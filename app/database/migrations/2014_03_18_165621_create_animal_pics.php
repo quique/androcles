@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnimalpics extends Migration {
+class CreateAnimalPics extends Migration {
 
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateAnimalpics extends Migration {
      */
     public function up()
     {
-        Schema::create('animalpics', function(Blueprint $table)
+        Schema::create('animal_pics', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('filename');
@@ -29,7 +29,7 @@ class CreateAnimalpics extends Migration {
      */
     public function down()
     {
-        Schema::drop('animalpics');
+        Schema::drop('animal_pics');
     }
 
 }
