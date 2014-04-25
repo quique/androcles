@@ -23,7 +23,7 @@ class CreateAnimals extends Migration {
             $table->string('weight');
             $table->integer('sex_id')->unsigned();
             $table->foreign('sex_id')->references('id')->on('sexes');
-            $table->boolean('neutered');
+            $table->boolean('neutered')->nullable();
             $table->date('dateofbirth');
             $table->date('dateofarrival');
             $table->date('dateofexit');

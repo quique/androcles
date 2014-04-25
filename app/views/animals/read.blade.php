@@ -1,16 +1,6 @@
 @extends('layout')
 @section('content')
 
-<section class="header section-padding">
-    <div class="background">&nbsp;</div>
-    <div class="container">
-        <div class="header-text">
-            <h1>Androcles</h1>
-            <p>A CMS for animal shelters</p>
-        </div>
-    </div>
-</section>
-
 <div class="container">
     <section class="section-padding">
         <div class="jumbotron text-center">

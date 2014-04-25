@@ -18,3 +18,5 @@ Route::get('/', function()
 
 
 Route::get('/animals', 'AnimalsController@read');
+Route::get('/animals/create', 'AnimalsController@create');
+Route::post('/animals/create', 'AnimalsController@saveCreate');
