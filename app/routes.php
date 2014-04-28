@@ -16,7 +16,15 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+Route::pattern('text_slug', '[a-z\-]+');
+Route::pattern('id_slug', '[0-9]+');
 
 Route::get('/animals', 'AnimalsController@read');
 Route::get('/animals/create', 'AnimalsController@create');
 Route::post('/animals/create', 'AnimalsController@saveCreate');
+
+Route::get('/animals/{id_slug}', 'AnimalsController@readSingle');
+Route::get('/animals/{text_slug}', 'AnimalsController@readStatus');
+
+
+

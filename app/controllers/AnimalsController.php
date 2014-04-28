@@ -59,8 +59,8 @@ class AnimalsController extends BaseController
 
             try {
                 $movedfile = Input::file('photo')->move($destination_path, $destination_filename);
-                AnimalsController::resizeImage($destination_path . $destination_filename, $thumbnails_path . $destination_filename, 240, 180);
-                AnimalsController::resizeImage($destination_path . $destination_filename, $destination_path . $destination_filename, 720, 540);
+                AnimalsController::resizeImage($destination_path . $destination_filename, $thumbnails_path . $destination_filename, 320, 240);
+                AnimalsController::resizeImage($destination_path . $destination_filename, $destination_path . $destination_filename, 960, 720);
             } catch(Exception $e) {
                 die($e->getMessage());
             }
@@ -78,11 +78,49 @@ class AnimalsController extends BaseController
     public function read()
     {
         $animals = Animal::all();
-        return View::make('animals.read', ['animals' => $animals, 'title' => "All animals"]);
+        return View::make('animals.read', [
+            'animals' => $animals,
+            'title' => "Todos los animales"]);
         // return View::make('animals.read', compact('animals'));
         // return View::make('animals.read')->with('animals', $animals);
     }
 
+    public function readStatus($status)
+    {
+        if ($status == "up-for-adoption") {
+            $animals = Animal::where('status_id', '<', 10)->get();
+            $title = "Animales en adopción";
+        } elseif ($status == 'lost') {
+            $animals = Animal::whereStatusId(13)->get();
+            $title = "Animales perdidos";
+        } elseif ($status == 'particular') {
+            $animals = Animal::whereStatusId(14)->get();
+            $title = "Animales de particulares";
+        } elseif ($status == 'happy-endings') {
+            $animals = Animal::whereBetween('status_id', [15, 20])->get();
+            $title = "Finales felices";
+        } elseif ($status == 'in-our-heart') {
+            $animals = Animal::whereBetween('status_id', [35, 40])->get();
+            $title = "Siempre en nuestro corazón";
+        } else {
+            $animals = Animal::where('status_id', '<', 10)->get();
+            $title = "Animales en adopción";
+        }
+        
+        return View::make('animals.read', [
+            'animals' => $animals,
+            'title' => $title]);
+    }
+
+    public function readSingle($id)
+    {
+        $animal = Animal::find($id);
+        $animal_pics = $animal->animal_pics()->get();
+        return View::make('animals.readsingle', [
+            'animal' => $animal,
+            'animal_pics' => $animal_pics,
+            'title'  => "Información sobre $animal->name"]);
+    }
 
 
     // XXX Does this function actually belong here?

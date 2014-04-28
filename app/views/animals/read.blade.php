@@ -4,39 +4,30 @@
 <div class="container">
     <section class="section-padding">
         <div class="jumbotron text-center">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h1>List of all animals</h1>
-                </div>
-
-                @if ($animals->isEmpty())
-                    <p>Currently, there is no animal!</p>
-                @else
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Species</th>
-                                <th>Neutered</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($animals as $animal)
-                                <tr>
-                                    <td>{{ $animal->id }} </td>
-                                    <td>{{ $animal->name }}</td>
-                                    <td>{{ $animal->species_id}}</td>
-                                    <td>{{ $animal->neutered ? 'Yes' : 'No'}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @endif
-            </div>
-
+            <h1>{{ $title }}</h1>
         </div>
-    </section>
+
+        @if ($animals->isEmpty())
+            <p>Actualmente no hay ningún animal de esas características.</p>
+        @else
+            <!-- {{ $i = 1; }} -->
+            @foreach($animals as $animal)
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail"> <!-- FIXME: Podría no haber fotos -->
+                        <a href={{ url('/animals/'.$animal->id) }}><img src={{ url('/images/animalthumbs/'. $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()->filename) }} alt="Foto de {{ $animal->name }}"></a>
+                        <div class="caption">
+                            <p class="pull-right"><span style="font-size: 32px;">{{ $animal->sex_id == 1 ? '&#9794;' : '&#9792;' }}</span></p>
+                            <h4><a href={{ url('/animals/'.$animal->id) }}>{{ $animal->name }}</a></h4>
+                            <p>{{ $animal->comments }}</p>
+                        </div>
+                    </div>
+                    <p class="ratings"><a href={{ url('/animals/'.$animal->id) }}>Sigue leyendo</a></p>
+                </div>
+                @if ($i++ % 3 == 0)
+                    <br style="clear: both;">
+                @endif
+            @endforeach
+        @endif
+</section>
 </div>
 @stop

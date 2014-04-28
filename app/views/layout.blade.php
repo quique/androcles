@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    {{ HTML::style('css/androcles.css') }}
 </head>
 
 <body>
@@ -33,11 +35,16 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animals <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animales <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ action('AnimalsController@read') }}">List all animals</a></li>
+                            <!-- li><a href="{{ action('AnimalsController@read') }}">Todos los animals</a></li -->
+                            <li><a href="/animals/up-for-adoption">En adopción</a></li>
+                            <li><a href="/animals/lost">Extraviados</a></li>
+                            <li><a href="/animals/particular">De particulares</a></li>
+                            <li><a href="/animals/happy-endings">Finales felices</a></li>
+                            <li><a href="/animals/in-our-heart">En nuestro corazón</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ action('AnimalsController@create') }}">Add animal</a></li>
+                            <li><a href="{{ action('AnimalsController@create') }}">Añadir un animal</a></li>
                         </ul>
                     </li>
                 </ul>

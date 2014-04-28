@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="page-header">
-        <h1>Add a new animal</h1>
+        <h1>Añadir un nuevo animal</h1>
     </div>
 
 <!--
