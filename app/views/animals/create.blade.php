@@ -69,7 +69,7 @@
         <div class="form-group">
             <label for="sex_id" class="col-sm-2 control-label">Sexo:</label>
             <div class="col-sm-2">
-                {{ Form::select('sex_id', $sexes, Input::old('sex_id') ? Input::old('sex_id') : 3, ['class'=>'form-control']) }}
+                {{ Form::select('sex_id', $sexes, Input::old('sex_id') ? Input::old('sex_id') : 2, ['class'=>'form-control']) }} {{-- 2: unknown --}}
             </div>
         </div>
 

@@ -16,7 +16,13 @@
                     <div class="thumbnail"> <!-- FIXME: Podría no haber fotos -->
                         <a href={{ url('/animals/'.$animal->id) }}><img src={{ url('/images/animalthumbs/'. $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()->filename) }} alt="Foto de {{ $animal->name }}"></a>
                         <div class="caption">
-                            <p class="pull-right"><span style="font-size: 32px;">{{ $animal->sex_id == 1 ? '&#9794;' : '&#9792;' }}</span></p>
+                            <p class="pull-right"><span style="font-size: 32px;">
+                            @if ($animal->sex_id == 1)
+                                &#9794;
+                            @elseif ($animal->sex_id == 3)
+                                &#9792;
+                            @endif
+                            </span></p>
                             <h4><a href={{ url('/animals/'.$animal->id) }}>{{ $animal->name }}</a></h4>
                             <p>{{ $animal->comments }}</p>
                         </div>
