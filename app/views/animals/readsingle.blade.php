@@ -10,10 +10,11 @@
 
 <div id="myCarousel" class="carousel slide col-md-offset-3 col-md-6">
     <!-- Indicators -->
-    <ol class="carousel-indicators"> <!-- FIXME -->
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+    <ol class="carousel-indicators">
+        <!-- {{ $i = 0 }} -->
+        @foreach($animal_pics as $pic)
+            <li data-target="#myCarousel" data-slide-to="{{ $i++ }}" {{ $pic == $animal_pics->first() ? 'class="active"' : '' }}></li>
+        @endforeach
     </ol>
 
     <div class="carousel-inner">

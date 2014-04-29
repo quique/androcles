@@ -27,7 +27,7 @@
                             <p>{{ $animal->comments }}</p>
                         </div>
                     </div>
-                    <p class="ratings"><a href={{ url('/animals/'.$animal->id) }}>Sigue leyendo</a></p>
+                    <p class="thumbfooter"><a href={{ url('/animals/'.$animal->id) }}>Sigue leyendo</a></p>
                 </div>
                 @if ($i++ % 3 == 0)
                     <br style="clear: both;">
