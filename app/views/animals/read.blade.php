@@ -13,8 +13,11 @@
             <!-- {{ $i = 1; }} -->
             @foreach($animals as $animal)
                 <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail"> <!-- FIXME: Podría no haber fotos -->
-                        <a href={{ url('/animals/'.$animal->id) }}><img src={{ url('/images/animalthumbs/'. $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()->filename) }} alt="Foto de {{ $animal->name }}"></a>
+                    <div class="thumbnail">
+                        <!-- {{ $pic = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first() }} -->
+                        @if ($pic)
+                        <a href={{ url('/animals/'.$animal->id) }}><img src={{ url('/images/animalthumbs/'. $pic->filename) }} alt="Foto de {{ $animal->name }}"></a>
+                        @endif
                         <div class="caption">
                             <p class="pull-right"><span style="font-size: 32px;">
                             @if ($animal->sex_id == 1)
