@@ -6,30 +6,8 @@
         <h1>{{ $title }}</h1>
     </div>
 
-<!--
-    <section class="section-padding">
-            {{ Form::open(['url'=> '/create', 'files' => true, 'method' => 'post']) }}
-            {{ Form::open(array('action' => 'AnimalsController@create')) }}
-            {{ Form::token() }}
-            <div>
-                {{ Form::label('name', 'Name:') }}
-                {{ Form::text('name') }}
-            </div>
-            <div>
-                {{ Form::label('comments', 'Comments:') }}
-                {{ Form::textarea('comments') }}
-            </div>
-            <p>{{ Form::text('first_name', '', array('class' => 'form-control','placeholder' => 'First name')) }}</p>
-            <p>{{ Form::password('password', array('class' => 'form-control','placeholder' => 'Your password')) }}</p>
-            <p>{{ Form::file('image') }}</p>
-            <div>
-                {{ Form::submit('Add new animal', array('class' => 'btn btn-danger')) }}
-            </div>
-            {{ Form::close() }}
-    </section>
--->
-
     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
+        {{ Form::token() }}
 
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Nombre del animal:</label>

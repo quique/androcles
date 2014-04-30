@@ -12,7 +12,7 @@
 
         <div class="form-group">
             {{ Form::label('name', 'Nombre del animal:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-4">{{ Form::text('name', $animal->name, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-4">{{ Form::text('name', $animal->name, ['class' => 'form-control', 'placeholder' => 'Nombre']) }}</div>
         </div>
 
         <div class="form-group">
@@ -24,17 +24,17 @@
 
         <div class="form-group">
             {{ Form::label('breed', 'Raza:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-4">{{ Form::text('breed', $animal->breed, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-4">{{ Form::text('breed', $animal->breed, ['class' => 'form-control', 'placeholder' => 'Raza(s)']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('size', 'Tamaño:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-4">{{ Form::text('size', $animal->size, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-4">{{ Form::text('size', $animal->size, ['class' => 'form-control', 'placeholder' => 'Tamaño']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('weight', 'Peso:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-4">{{ Form::text('weight', $animal->weight, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-4">{{ Form::text('weight', $animal->weight, ['class' => 'form-control', 'placeholder' => 'Peso aproximado']) }}</div>
         </div>
 
         <div class="form-group">
@@ -56,7 +56,7 @@
         <div class="form-group">
             {{ Form::label('dateofbirth', 'Fecha de nacimiento:', ['class' => 'col-sm-2 control-label']) }}
             <div class="col-sm-2">
-                {{ Form::text('dateofbirth', $animal->dateofbirth, ['class' => 'form-control']) }}
+                {{ Form::text('dateofbirth', $animal->dateofbirth, ['class' => 'form-control', 'placeholder' => 'Pulse aquí']) }}
                 <script>
                     $(function() {
                         $.datepicker.setDefaults($.datepicker.regional["es"]);
@@ -74,7 +74,7 @@
         <div class="form-group">
             {{ Form::label('dateofarrival', 'Fecha de ingreso:', ['class' => 'col-sm-2 control-label']) }}
             <div class="col-sm-2">
-                {{ Form::text('dateofarrival', $animal->dateofarrival, ['class' => 'form-control']) }}
+                {{ Form::text('dateofarrival', $animal->dateofarrival, ['class' => 'form-control', 'placeholder' => 'Pulse aquí']) }}
                 <script>
                     $(function() {
                         $( "#dateofarrival" ).datepicker({
@@ -108,7 +108,7 @@
 
         <div class="form-group">
             {{ Form::label('comments', 'Comentarios:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-7">{{ Form::textarea('comments', $animal->comments, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-7">{{ Form::textarea('comments', $animal->comments, ['class' => 'form-control', 'placeholder' => 'Información sobre el animal de interés para los potenciales adoptantes']) }}</div>
         </div>
 
         <div class="form-group">

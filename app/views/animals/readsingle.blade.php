@@ -80,8 +80,10 @@
             </table>
         </div>
 
-        <div><a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a></div>
-        <br><br>
+        <div>
+            <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">Borrar</a>
+            <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a>
+        </div><br><br>
 
     </div>
 </div>

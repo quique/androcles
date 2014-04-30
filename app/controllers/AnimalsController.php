@@ -197,6 +197,26 @@ class AnimalsController extends BaseController
     }
 
 
+    public function delete(Animal $animal)
+    {
+        return View::make('animals.delete', [
+            'animal' => $animal,
+            'title'  => "Borrar animal",
+        ]);
+    }
+
+
+    public function doDelete()
+    {
+        $animal = Animal::findOrFail(Input::get('id'));
+        DB::table('animal_pics')->where('animal_id', '=', Input::get('id'))->delete();
+        /* TODO: Remove pictures from the filesystem */
+        $animal->delete();
+        return Redirect::action('AnimalsController@read');
+    }
+
+
+
     // XXX Does this function actually belong here?
     public function resizeImage($input, $output, $new_width, $new_height)
     {

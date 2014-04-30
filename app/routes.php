@@ -27,3 +27,5 @@ Route::model('animal','Animal');
 Route::get('/animals/{animal}/update', 'AnimalsController@update');
 Route::post('/animals/{animal}/update', ['before'=>'csrf', 'uses' => 'AnimalsController@saveUpdate']);
 Route::get('/animals/{text_slug}', 'AnimalsController@readStatus');
+Route::get('/animals/{animal}/delete','AnimalsController@delete');
+Route::post('/animals/{animal}/delete','AnimalsController@doDelete');
