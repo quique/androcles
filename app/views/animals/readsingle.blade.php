@@ -73,12 +73,15 @@
                     <td>{{ $animal->color()->first()->name }}</td></tr>
 
                 <tr><td><strong>Pelaje:</strong></td>
-                    <td>{{ $animal->coat()->first()->name }}</td></tr>
+                    <td>{{ $animal->coat()->first()->description }}</td></tr>
 
                 <tr><td><strong>Situación:</strong></td>
                     <td>{{ $animal->status()->first()->name }}</td></tr>
             </table>
         </div>
+
+        <div><a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a></div>
+        <br><br>
 
     </div>
 </div>

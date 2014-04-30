@@ -10,7 +10,7 @@ class AnimalsController extends BaseController
         $coats = ['' => 'Seleccione el pelaje'] + Coat::lists('description', 'id');
         $statuses = ['' => 'Seleccione el estado'] + Status::lists('name', 'id');
         return View::make('animals.create', [
-            'title'    => "Add a new animal",
+            'title'    => "Añadir un nuevo animal",
             'species'  => $species,
             'sexes'    => $sexes,
             'colors'   => $colors,
@@ -106,7 +106,7 @@ class AnimalsController extends BaseController
             $animals = Animal::where('status_id', '<', 10)->get();
             $title = "Animales en adopción";
         }
-        
+
         return View::make('animals.read', [
             'animals' => $animals,
             'title' => $title]);
@@ -120,6 +120,80 @@ class AnimalsController extends BaseController
             'animal' => $animal,
             'animal_pics' => $animal_pics,
             'title'  => "Información sobre $animal->name"]);
+    }
+
+
+    public function update($animal)
+    {
+        $animal_pics = $animal->animal_pics()->get();
+
+        $species = array('' => 'Seleccione la especie') + Species::lists('name', 'id');
+        $sexes = Sex::lists('name', 'id');
+        $colors = ['' => 'Seleccione el color'] + Color::lists('name', 'id');
+        $coats = ['' => 'Seleccione el pelaje'] + Coat::lists('description', 'id');
+        $statuses = ['' => 'Seleccione el estado'] + Status::lists('name', 'id');
+
+        return View::make('animals.update', [
+            'animal'      => $animal,
+            'animal_pics' => $animal_pics,
+            'title'       => "Editar la información sobre $animal->name",
+            'species'     => $species,
+            'sexes'       => $sexes,
+            'colors'      => $colors,
+            'coats'       => $coats,
+            'statuses'    => $statuses
+        ]);
+    }
+
+    public function saveUpdate()
+    {
+        $input = Input::all();
+        $animal = Animal::findOrFail($input['id']);
+        $animal->name            = $input['name'];
+        $animal->species_id      = $input['species_id'];
+        $animal->breed           = $input['breed'];
+        $animal->size            = $input['size'];
+        $animal->weight          = $input['weight'];
+        $animal->sex_id          = $input['sex_id'];
+        $animal->neutered        = $input['neutered'];
+        $animal->dateofbirth     = $input['dateofbirth'];
+        $animal->dateofarrival   = $input['dateofarrival'];
+        $animal->dateofexit      = $input['dateofexit'];
+        $animal->color_id        = $input['color_id'];
+        $animal->coat_id         = $input['coat_id'];
+        $animal->status_id       = $input['status_id'];
+        $animal->comments        = $input['comments'];
+        $animal->youtube         = $input['youtube'];
+        $animal->provenance      = $input['provenance'];
+        $animal->deliverer       = $input['deliverer'];
+        $animal->chipcode        = $input['chipcode'];
+        $animal->vaccinations    = $input['vaccinations'];
+        $animal->diseases        = $input['diseases'];
+        $animal->surgeries       = $input['surgeries'];
+        $animal->treatment       = $input['treatment'];
+        $animal->privatecomments = $input['privatecomments'];
+        $animal->save();
+
+        if (Input::hasFile('photo') and Input::file('photo')->getMimeType() == "image/jpeg") {
+            $destination_path = public_path() ."/images/animalpics/";
+            $thumbnails_path  = public_path() ."/images/animalthumbs/";
+            $destination_filename = $animal->id . '_' . str_random(6) . '.jpg';
+
+            try {
+                $movedfile = Input::file('photo')->move($destination_path, $destination_filename);
+                AnimalsController::resizeImage($destination_path . $destination_filename, $thumbnails_path . $destination_filename, 320, 240);
+                AnimalsController::resizeImage($destination_path . $destination_filename, $destination_path . $destination_filename, 960, 720);
+            } catch(Exception $e) {
+                die($e->getMessage());
+            }
+
+            $pic = new AnimalPic();
+            $pic->filename = $destination_filename;
+            $pic->animal_id = $animal->id;
+            $pic->save();
+        }
+
+        return Redirect::action('AnimalsController@read'); // TODO: Redirect to the view of this animal.
     }
 
 
