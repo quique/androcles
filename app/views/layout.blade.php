@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animales <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animales <strong class="caret"></strong></a>
                         <ul class="dropdown-menu">
                             <!-- li><a href="{{ action('AnimalsController@read') }}">Todos los animals</a></li -->
                             <li><a href="/animals/up-for-adoption">En adopción</a></li>

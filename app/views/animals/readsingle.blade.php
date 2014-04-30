@@ -4,7 +4,7 @@
 
 <div class="jumbotron text-center">
     <div class="container">
-        <h1>{{ $title }}</h1>
+        <h2>{{ $title }}</h2>
     </div>
 </div>
 
@@ -40,42 +40,42 @@
         <p style="margin-top: 20px;">{{ $animal->comments }}</p>
 
         <div class="panel panel-default">
-            <div class="panel-heading"><h4>Datos</h4></div>
-            <table class="table">
-                <tr><td><b>Nombre del animal:</b></td>
+            <div class="panel-heading"><h3>Datos</h3></div>
+            <table class="table" summary="Ficha de {{ $animal->name }}">
+                <tr><td><strong>Nombre del animal:</strong></td>
                     <td>{{ $animal->name }}</td></tr>
 
-                <tr><td><b>Especie:</b></td>
+                <tr><td><strong>Especie:</strong></td>
                     <td>{{ $animal->species()->first()->name }}</td></tr>
 
-                <tr><td><b>Raza:</b></td>
+                <tr><td><strong>Raza:</strong></td>
                     <td>{{ $animal->breed }}</td></tr>
 
-                <tr><td><b>Tamaño:</b></td>
+                <tr><td><strong>Tamaño:</strong></td>
                     <td>{{ $animal->size }}</td></tr>
 
-                <tr><td><b>Peso:</b></td>
+                <tr><td><strong>Peso:</strong></td>
                     <td>{{ $animal->weight }}</td></tr>
 
-                <tr><td><b>Sexo:</b></td>
+                <tr><td><strong>Sexo:</strong></td>
                     <td>{{ $animal->sex()->first()->name }}</td></tr>
 
-                <tr><td><b>Esterilizado:</b></td>
+                <tr><td><strong>Esterilizado:</strong></td>
                     <td>{{ $animal->neutered ? 'Sí' : 'No' }}</td></tr>
 
-                <tr><td><b>Fecha de nacimiento:</b></td>
+                <tr><td><strong>Fecha de nacimiento:</strong></td>
                     <td>{{ $animal->dateofbirth }}</td></tr>
 
-                <tr><td><b>Fecha de ingreso:</b></td>
+                <tr><td><strong>Fecha de ingreso:</strong></td>
                     <td>{{ $animal->dateofarrival }}</td></tr>
 
-                <tr><td><b>Color:</b></td>
+                <tr><td><strong>Color:</strong></td>
                     <td>{{ $animal->color()->first()->name }}</td></tr>
 
-                <tr><td><b>Pelaje:</b></td>
+                <tr><td><strong>Pelaje:</strong></td>
                     <td>{{ $animal->coat()->first()->name }}</td></tr>
 
-                <tr><td><b>Situación:</b></td>
+                <tr><td><strong>Situación:</strong></td>
                     <td>{{ $animal->status()->first()->name }}</td></tr>
             </table>
         </div>

@@ -4,7 +4,7 @@
 <div class="container">
     <section class="section-padding">
         <div class="jumbotron text-center">
-            <h1>{{ $title }}</h1>
+            <h2>{{ $title }}</h2>
         </div>
 
         @if ($animals->isEmpty())
@@ -26,7 +26,7 @@
                                 &#9792;
                             @endif
                             </span></p>
-                            <h4><a href={{ url('/animals/'.$animal->id) }}>{{ $animal->name }}</a></h4>
+                            <h3><a href={{ url('/animals/'.$animal->id) }}>{{ $animal->name }}</a></h3>
                             <p>{{ $animal->comments }}</p>
                         </div>
                     </div>

@@ -38,12 +38,12 @@
 */
 
 .caption {
-    height: 120px;
+    height: 140px;
     overflow: hidden;
     font-size: small;
 }
 
-.caption h4 {
+.caption h3 {
     white-space: nowrap;
     text-align: center;
 }

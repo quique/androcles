@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="species_id" class="col-sm-2 control-label">Especie:</label>
             <div class="col-sm-2">
-                {{ Form::select('species_id', $species, Input::old('species_id'), ['class'=>'form-control']) }}
+                {{ Form::select('species_id', $species, Input::old('species_id'), ['class'=>'form-control', 'id'=>'species_id']) }}
             </div>
         </div>
 
@@ -69,7 +69,7 @@
         <div class="form-group">
             <label for="sex_id" class="col-sm-2 control-label">Sexo:</label>
             <div class="col-sm-2">
-                {{ Form::select('sex_id', $sexes, Input::old('sex_id') ? Input::old('sex_id') : 2, ['class'=>'form-control']) }} {{-- 2: unknown --}}
+                {{ Form::select('sex_id', $sexes, Input::old('sex_id') ? Input::old('sex_id') : 2, ['class'=>'form-control', 'id'=>'sex_id']) }} {{-- 2: unknown --}}
             </div>
         </div>
 
@@ -121,21 +121,21 @@
         <div class="form-group">
             <label for="color_id" class="col-sm-2 control-label">Color:</label>
             <div class="col-sm-2">
-                {{ Form::select('color_id', $colors, Input::old('color_id'), ['class'=>'form-control']) }}
+                {{ Form::select('color_id', $colors, Input::old('color_id'), ['class'=>'form-control', 'id'=>'color_id']) }}
             </div>
         </div>
 
         <div class="form-group">
             <label for="coat_id" class="col-sm-2 control-label">Pelaje:</label>
             <div class="col-sm-2">
-                {{ Form::select('coat_id', $coats, Input::old('coat_id'), ['class'=>'form-control']) }}
+                {{ Form::select('coat_id', $coats, Input::old('coat_id'), ['class'=>'form-control', 'id'=>'coat_id']) }}
             </div>
         </div>
 
         <div class="form-group">
             <label for="status_id" class="col-sm-2 control-label">Situación:</label>
             <div class="col-sm-2">
-                {{ Form::select('status_id', $statuses, Input::old('status_id'), ['class'=>'form-control']) }}
+                {{ Form::select('status_id', $statuses, Input::old('status_id'), ['class'=>'form-control', 'id'=>'status_id']) }}
             </div>
         </div>
 
