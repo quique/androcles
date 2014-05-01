@@ -14,9 +14,10 @@
             @foreach($animals as $animal)
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
-                        <!-- {{ $pic = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first() }} -->
-                        @if ($pic)
-                        <a href={{ url('/animals/'.$animal->id) }}><img src={{ url('/images/animalthumbs/'. $pic->filename) }} alt="Foto de {{ $animal->name }}"></a>
+                        @if($animal->pic)
+                            <a href={{ url('/animals/'.$animal->id) }}>
+                            <img src="{{ asset("/images/animalthumbs/".$animal->pic) }}"
+                            alt="Foto de {{ $animal->name }}"></a>
                         @endif
                         <div class="caption">
                             <p class="pull-right"><span style="font-size: 32px;">

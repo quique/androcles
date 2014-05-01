@@ -78,6 +78,9 @@ class AnimalsController extends BaseController
     public function read()
     {
         $animals = Animal::all();
+        foreach ($animals as $animal)
+            $animal['pic'] = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
+        
         return View::make('animals.read', [
             'animals' => $animals,
             'title' => "Todos los animales"]);
@@ -88,11 +91,11 @@ class AnimalsController extends BaseController
     public function readStatus($status)
     {
         if ($status == "up-for-adoption") {
-            $animals = Animal::where('status_id', '<', 10)->get();
+            $animals = Animal::where('status_id', '<=', 10)->get();
             $title = "Animales en adopción";
         } elseif ($status == 'lost') {
-            $animals = Animal::whereStatusId(13)->get();
-            $title = "Animales perdidos";
+            $animals = Animal::whereIn('status_id', [13, 25, 30])->get();
+            $title = "Animales perdidos y encontrados";
         } elseif ($status == 'particular') {
             $animals = Animal::whereStatusId(14)->get();
             $title = "Animales de particulares";
@@ -103,8 +106,12 @@ class AnimalsController extends BaseController
             $animals = Animal::whereBetween('status_id', [35, 40])->get();
             $title = "Siempre en nuestro corazón";
         } else {
-            $animals = Animal::where('status_id', '<', 10)->get();
+            $animals = Animal::where('status_id', '<=', 10)->get();
             $title = "Animales en adopción";
+        }
+
+        foreach ($animals as $animal) {
+            $animal['pic'] = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
         }
 
         return View::make('animals.read', [

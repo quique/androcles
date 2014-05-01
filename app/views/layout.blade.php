@@ -39,7 +39,7 @@
                         <ul class="dropdown-menu">
                             <!-- li><a href="{{ action('AnimalsController@read') }}">Todos los animals</a></li -->
                             <li><a href="/animals/up-for-adoption">En adopción</a></li>
-                            <li><a href="/animals/lost">Extraviados</a></li>
+                            <li><a href="/animals/lost">Perdidos y encontrados</a></li>
                             <li><a href="/animals/particular">De particulares</a></li>
                             <li><a href="/animals/happy-endings">Finales felices</a></li>
                             <li><a href="/animals/in-our-heart">En nuestro corazón</a></li>
