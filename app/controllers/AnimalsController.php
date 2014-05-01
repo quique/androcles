@@ -174,9 +174,23 @@ class AnimalsController extends BaseController
         $animal->privatecomments = $input['privatecomments'];
         $animal->save();
 
+        
+        $destination_path = public_path() ."/images/animalpics/";
+        $thumbnails_path  = public_path() ."/images/animalthumbs/";
+
+        /* Delete the selected pictures */
+        $picstodelete = isset($input['picstodelete']) ? $input['picstodelete'] : [];
+        if (count($picstodelete) > 0) {
+            foreach($picstodelete as $picId) {
+                $pic = AnimalPic::findOrFail($picId);
+                unlink($destination_path . $pic->filename); // "Delete" the file.
+                unlink($thumbnails_path . $pic->filename);
+                $pic->delete();
+            }
+        }
+
+        /* Add new picture */
         if (Input::hasFile('photo') and Input::file('photo')->getMimeType() == "image/jpeg") {
-            $destination_path = public_path() ."/images/animalpics/";
-            $thumbnails_path  = public_path() ."/images/animalthumbs/";
             $destination_filename = $animal->id . '_' . str_random(6) . '.jpg';
 
             try {
@@ -193,7 +207,7 @@ class AnimalsController extends BaseController
             $pic->save();
         }
 
-        return Redirect::action('AnimalsController@read'); // TODO: Redirect to the view of this animal.
+        return Redirect::action('AnimalsController@readSingle', ['id' => $animal->id]);
     }
 
 
@@ -209,8 +223,16 @@ class AnimalsController extends BaseController
     public function doDelete()
     {
         $animal = Animal::findOrFail(Input::get('id'));
-        DB::table('animal_pics')->where('animal_id', '=', Input::get('id'))->delete();
-        /* TODO: Remove pictures from the filesystem */
+
+        $destination_path = public_path() ."/images/animalpics/";
+        $thumbnails_path  = public_path() ."/images/animalthumbs/";
+        $pics = AnimalPic::whereAnimalId(Input::get('id'))->get();
+        foreach ($pics as $pic) {
+            unlink($destination_path . $pic->filename); // "Delete" the file.
+            unlink($thumbnails_path . $pic->filename);
+            $pic->delete();
+        }
+        
         $animal->delete();
         return Redirect::action('AnimalsController@read');
     }

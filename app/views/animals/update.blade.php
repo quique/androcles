@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="page-header">
-        <h1>{{ $title }}</h1>
+        <h2>{{ $title }}</h2>
     </div>
 
 
@@ -118,7 +118,16 @@
             <p class="help-block col-sm-offset-2">&nbsp;Ej: si el vídeo está en http://www.youtube.com/watch?v=q0WBwq-qnb8, introduce q0WBwq-qnb8.</p>
         </div>
 
-        <div class="form-group"><!-- FIXME: Show previous photos and allow its removal -->
+        @if (count($animal_pics) > 0)
+            @foreach ($animal_pics as $pic)
+            <div class="form-group">
+                <div class="col-sm-2 control-label"><input name="picstodelete[]" type="checkbox" value='{{ $pic->id }}'> <label for="picstodelete[]">Eliminar</label></div>
+                <div class="col-sm-2"><img src="/images/animalthumbs/{{ $pic->filename }}" alt="Foto de {{ $animal->name }}" /></div>
+                </div>
+            @endforeach
+        @endif
+
+        <div class="form-group">
             {{ Form::label('photo', 'Foto:', ['class' => 'col-sm-2 control-label']) }}
             <div class="col-sm-4">
                 {{ Form::file('photo') }}
