@@ -23,6 +23,20 @@ class AnimalsController extends BaseController
     public function saveCreate()
     {
         $input = Input::all();
+        $rules = [
+            'name'       => 'required',
+            'species_id' => 'required',
+            'color_id'   => 'required',
+            'coat_id'    => 'required',
+            'status_id'  => 'required',
+        ];
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return Redirect::action('AnimalsController@create')->withErrors($validator)->withInput();
+            //return Redirect::action('AnimalsController@create')->withErrors($validator)->withInput();
+            return Redirect::to('animals/create')->withInput()->withErrors($validator);
+        }
+
         $animal = new Animal;
         $animal->name            = $input['name'];
         $animal->species_id      = $input['species_id'];
@@ -71,7 +85,7 @@ class AnimalsController extends BaseController
             $pic->save();
         }
 
-        return Redirect::action('AnimalsController@read'); // TODO: Redirect to the view of this animal.
+        return Redirect::action('AnimalsController@readSingle', ['id' => $animal->id]);
     }
 
 
@@ -155,6 +169,18 @@ class AnimalsController extends BaseController
     public function saveUpdate()
     {
         $input = Input::all();
+        $rules = [
+            'name'       => 'required',
+            'species_id' => 'required',
+            'color_id'   => 'required',
+            'coat_id'    => 'required',
+            'status_id'  => 'required',
+        ];
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return Redirect::action('AnimalsController@update', ['id'=>$input['id']])->withErrors($validator)->withInput();
+        }
+
         $animal = Animal::findOrFail($input['id']);
         $animal->name            = $input['name'];
         $animal->species_id      = $input['species_id'];

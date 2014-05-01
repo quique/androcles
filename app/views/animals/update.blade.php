@@ -13,6 +13,9 @@
         <div class="form-group">
             {{ Form::label('name', 'Nombre del animal:', ['class' => 'col-sm-2 control-label']) }}
             <div class="col-sm-4">{{ Form::text('name', $animal->name, ['class' => 'form-control', 'placeholder' => 'Nombre']) }}</div>
+            @if($errors->has('name'))
+                <p class="text-danger">Verifique este campo.</p>
+            @endif
         </div>
 
         <div class="form-group">
@@ -20,6 +23,9 @@
             <div class="col-sm-2">
                 {{ Form::select('species_id', $species, $animal->species_id, ['class'=>'form-control']) }}
             </div>
+            @if($errors->has('species_id'))
+                <p class="text-danger">Verifique este campo.</p>
+            @endif
         </div>
 
         <div class="form-group">
@@ -90,6 +96,9 @@
             <div class="col-sm-2">
                 {{ Form::select('color_id', $colors, $animal->color_id, ['class'=>'form-control']) }}
             </div>
+            @if($errors->has('color_id'))
+                <p class="text-danger">Verifique este campo.</p>
+            @endif
         </div>
 
         <div class="form-group">
@@ -97,6 +106,9 @@
             <div class="col-sm-2">
                 {{ Form::select('coat_id', $coats, $animal->coat_id, ['class'=>'form-control']) }}
             </div>
+            @if($errors->has('coat_id'))
+                <p class="text-danger">Verifique este campo.</p>
+            @endif
         </div>
 
         <div class="form-group">
@@ -104,6 +116,9 @@
             <div class="col-sm-2">
                 {{ Form::select('status_id', $statuses, $animal->status_id, ['class'=>'form-control']) }}
             </div>
+            @if($errors->has('status_id'))
+                <p class="text-danger">Verifique este campo.</p>
+            @endif
         </div>
 
         <div class="form-group">
@@ -113,7 +128,7 @@
 
         <div class="form-group">
             {{ Form::label('youtube', 'ID de vídeo en Youtube:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-4">{{ Form::text('youtube', $animal->youtube, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-4">{{ Form::text('youtube', $animal->youtube, ['class' => 'form-control', 'placeholder' => 'q0WBwq-qnb8']) }}</div>
             <br style="clear: both">
             <p class="help-block col-sm-offset-2">&nbsp;Ej: si el vídeo está en http://www.youtube.com/watch?v=q0WBwq-qnb8, introduce q0WBwq-qnb8.</p>
         </div>
@@ -137,18 +152,18 @@
 
         <div class="form-group">
             {{ Form::label('provenance', 'Lugar de procedencia:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-4">{{ Form::text('provenance', $animal->provenance, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-4">{{ Form::text('provenance', $animal->provenance, ['class' => 'form-control', 'placeholder'=>'Origen del animal']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('deliverer', 'Persona y motivo de entrega:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-7">{{ Form::textarea('deliverer', $animal->deliverer, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-7">{{ Form::textarea('deliverer', $animal->deliverer, ['class' => 'form-control', 'placeholder'=>'Circunstancias de la entrega (persona, razón, etc)']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('dateofexit', 'Fecha de salida:', ['class' => 'col-sm-2 control-label']) }}
             <div class="col-sm-2">
-                {{ Form::text('dateofexit', $animal->dateofexit, ['class' => 'form-control']) }}
+                {{ Form::text('dateofexit', $animal->dateofexit, ['class' => 'form-control', 'placeholder'=>'Pulse aquí']) }}
                 <script>
                     $(function() {
                         $( "#dateofexit" ).datepicker({
@@ -161,32 +176,32 @@
 
         <div class="form-group">
             {{ Form::label('chipcode', 'Número de chip:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-4">{{ Form::text('chipcode', $animal->chipcode, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-4">{{ Form::text('chipcode', $animal->chipcode, ['class' => 'form-control', 'placeholder'=>'Número de identificación del animal']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('vaccinations', 'Vacunas:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-7">{{ Form::textarea('vaccinations', $animal->vaccinations, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-7">{{ Form::textarea('vaccinations', $animal->vaccinations, ['class' => 'form-control', 'placeholder'=>'Vacunas recibidas, junto con su fecha']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('diseases', 'Enfermedades:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-7">{{ Form::textarea('diseases', $animal->diseases, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-7">{{ Form::textarea('diseases', $animal->diseases, ['class' => 'form-control', 'placeholder'=>'Enfermedades o síndromes que sufra']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('surgeries', 'Operaciones:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-7">{{ Form::textarea('surgeries', $animal->surgeries, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-7">{{ Form::textarea('surgeries', $animal->surgeries, ['class' => 'form-control', 'placeholder'=>'Operaciones quirúrgicas a las que se haya sometido (junto con su fecha)']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('treatment', 'Tratamiento:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-7">{{ Form::textarea('treatment', $animal->treatment, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-7">{{ Form::textarea('treatment', $animal->treatment, ['class' => 'form-control', 'placeholder'=>'Tratamientos médicos que deba seguir']) }}</div>
         </div>
 
         <div class="form-group">
             {{ Form::label('privatecomments', 'Observaciones:', ['class' => 'col-sm-2 control-label']) }}
-            <div class="col-sm-7">{{ Form::textarea('privatecomments', $animal->privatecomments, ['class' => 'form-control']) }}</div>
+            <div class="col-sm-7">{{ Form::textarea('privatecomments', $animal->privatecomments, ['class' => 'form-control', 'placeholder'=>'Cualquier otra información de interés sobre este animal']) }}</div>
         </div>
 
         <div class="col-sm-offset-2">
