@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ $title }}</title>
+    <title>{{{ $title }}}</title>
 
     {{ HTML::style('http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css') }}
     {{ HTML::script('http://code.jquery.com/jquery-2.1.0.min.js') }}
@@ -33,7 +33,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animales <strong class="caret"></strong></a>
                         <ul class="dropdown-menu">
@@ -47,20 +46,12 @@
                             <li><a href="{{ action('AnimalsController@create') }}">Añadir un animal</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{ action('NewsController@index') }}">Noticias</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 </header>
-
-<section class="header section-padding">
-    <div class="background">&nbsp;</div>
-    <div class="container">
-        <div class="header-text">
-            <h1>Androcles <small>A CMS for animal shelters</small></h1>
-        </div>
-    </div>
-</section>
 
 @yield('content')
 

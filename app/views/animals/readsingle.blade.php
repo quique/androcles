@@ -4,7 +4,7 @@
 
 <div class="jumbotron text-center">
     <div class="container">
-        <h2>{{ $title }}</h2>
+        <h2>{{{ $title }}}</h2>
     </div>
 </div>
 
@@ -20,7 +20,7 @@
     <div class="carousel-inner">
         @foreach($animal_pics as $pic)
             <div class="item {{ $pic == $animal_pics->first() ? 'active' : '' }}">
-                <img src="/images/animalpics/{{ $pic->filename }}" class="img-responsive" alt="Foto de {{ $animal->name }}">
+                <img src="{{ asset("/images/animalpics/$pic->filename") }}" class="img-responsive" alt="Foto de {{{ $animal->name }}}">
             </div>
         @endforeach
     </div>
@@ -37,25 +37,25 @@
 
 <div class="row">
     <div class="col-md-offset-3 col-md-6">
-        <p style="margin-top: 20px;">{{ $animal->comments }}</p>
+        <p style="margin-top: 20px;">{{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($animal->comments, ENT_QUOTES, 'UTF-8')) }}</p>
 
         <div class="panel panel-default">
             <div class="panel-heading"><h3>Datos</h3></div>
-            <table class="table" summary="Ficha de {{ $animal->name }}">
+            <table class="table" summary="Ficha de {{{ $animal->name }}}">
                 <tr><td><strong>Nombre del animal:</strong></td>
-                    <td>{{ $animal->name }}</td></tr>
+                    <td>{{{ $animal->name }}}</td></tr>
 
                 <tr><td><strong>Especie:</strong></td>
                     <td>{{ $animal->species()->first()->name }}</td></tr>
 
                 <tr><td><strong>Raza:</strong></td>
-                    <td>{{ $animal->breed }}</td></tr>
+                    <td>{{{ $animal->breed }}}</td></tr>
 
                 <tr><td><strong>Tamaño:</strong></td>
-                    <td>{{ $animal->size }}</td></tr>
+                    <td>{{{ $animal->size }}}</td></tr>
 
                 <tr><td><strong>Peso:</strong></td>
-                    <td>{{ $animal->weight }}</td></tr>
+                    <td>{{{ $animal->weight }}}</td></tr>
 
                 <tr><td><strong>Sexo:</strong></td>
                     <td>{{ $animal->sex()->first()->name }}</td></tr>

@@ -3,16 +3,16 @@
 
 <div class="container">
     <div class="page-header">
-        <h1>{{ $title }}</h1>
+        <h2>{{ $title }}</h2>
     </div>
 
     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
-        {{ Form::token() }}
+        {{ Form::token() }} <!-- Protection against cross-site request forgery attacks -->
 
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Nombre del animal:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" value="{{ Input::old('name') }}">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" value="{{{ Input::old('name') }}}">
             </div>
             @if($errors->has('name'))
                 <p class="text-danger">Verifique este campo.</p>
@@ -33,21 +33,21 @@
         <div class="form-group">
             <label for="breed" class="col-sm-2 control-label">Raza:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="breed" id="breed" placeholder="Raza(s)" value="{{ Input::old('breed') }}">
+                <input type="text" class="form-control" name="breed" id="breed" placeholder="Raza(s)" value="{{{ Input::old('breed') }}}">
             </div>
         </div>
 
         <div class="form-group">
             <label for="size" class="col-sm-2 control-label">Tamaño:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="size" id="size" placeholder="Tamaño" value="{{ Input::old('size') }}">
+                <input type="text" class="form-control" name="size" id="size" placeholder="Tamaño" value="{{{ Input::old('size') }}}">
             </div>
         </div>
 
         <div class="form-group">
             <label for="weight" class="col-sm-2 control-label">Peso:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="weight" id="weight" placeholder="Peso aproximado" value="{{ Input::old('weight') }}">
+                <input type="text" class="form-control" name="weight" id="weight" placeholder="Peso aproximado" value="{{{ Input::old('weight') }}}">
             </div>
         </div>
 
@@ -136,7 +136,7 @@
         <div class="form-group">
             <label for="comments" class="col-sm-2 control-label">Comentarios:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="comments" id="comments" placeholder="Información sobre el animal de interés para los potenciales adoptantes">{{ Input::old('comments') }}</textarea>
+                <textarea class="form-control" rows="4" name="comments" id="comments" placeholder="Información sobre el animal de interés para los potenciales adoptantes">{{{ Input::old('comments') }}}</textarea>
             </div>
         </div>
 
@@ -144,7 +144,7 @@
             <label for="youtube" class="col-sm-2 control-label">ID de vídeo en Youtube:</label>
 
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="youtube" id="youtube" placeholder="q0WBwq-qnb8" value="{{ Input::old('youtube') }}">
+                <input type="text" class="form-control" name="youtube" id="youtube" placeholder="q0WBwq-qnb8" value="{{{ Input::old('youtube') }}}">
             </div><br style="clear: both">
             <p class="help-block col-sm-offset-2">&nbsp;Ej: si el vídeo está en http://www.youtube.com/watch?v=q0WBwq-qnb8, introduce q0WBwq-qnb8.</p>
         </div>
@@ -158,24 +158,27 @@
             </div>
         </div>
 
+        
+        <h2>Información interna</h2>
+
         <div class="form-group">
             <label for="provenance" class="col-sm-2 control-label">Lugar de procedencia:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="provenance" id="provenance" placeholder="Origen del animal" value="{{ Input::old('provenance') }}">
+                <input type="text" class="form-control" name="provenance" id="provenance" placeholder="Origen del animal" value="{{{ Input::old('provenance') }}}">
             </div>
         </div>
 
         <div class="form-group">
             <label for="deliverer" class="col-sm-2 control-label">Persona y motivo de entrega:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="deliverer" id="deliverer" placeholder="Circunstancias de la entrega (persona, razón, etc)">{{ Input::old('deliverer') }}</textarea>
+                <textarea class="form-control" rows="4" name="deliverer" id="deliverer" placeholder="Circunstancias de la entrega (persona, razón, etc)">{{{ Input::old('deliverer') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
             <label for="dateofexit" class="col-sm-2 control-label">Fecha de salida:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="dateofexit" id="dateofexit" placeholder="Pulse aquí" value="{{ Input::old('dateofexit') }}">
+                <input type="text" class="form-control" name="dateofexit" id="dateofexit" placeholder="Pulse aquí" value="{{{ Input::old('dateofexit') }}}">
                 <script>
                     $(function() {
                         $( "#dateofexit" ).datepicker({
@@ -189,42 +192,42 @@
         <div class="form-group">
             <label for="chipcode" class="col-sm-2 control-label">Número de chip:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="chipcode" id="chipcode" placeholder="Número de identificación del animal" value="{{ Input::old('chipcode') }}">
+                <input type="text" class="form-control" name="chipcode" id="chipcode" placeholder="Número de identificación del animal" value="{{{ Input::old('chipcode') }}}">
             </div>
         </div>
 
         <div class="form-group">
             <label for="vaccinations" class="col-sm-2 control-label">Vacunas:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="vaccinations" id="vaccinations" placeholder="Vacunas recibidas, junto con su fecha">{{ Input::old('vaccinations') }}</textarea>
+                <textarea class="form-control" rows="4" name="vaccinations" id="vaccinations" placeholder="Vacunas recibidas, junto con su fecha">{{{ Input::old('vaccinations') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
             <label for="diseases" class="col-sm-2 control-label">Enfermedades:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="diseases" id="diseases" placeholder="Enfermedades o síndromes que sufra">{{ Input::old('diseases') }}</textarea>
+                <textarea class="form-control" rows="4" name="diseases" id="diseases" placeholder="Enfermedades o síndromes que sufra">{{{ Input::old('diseases') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
             <label for="surgeries" class="col-sm-2 control-label">Operaciones:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="surgeries" id="surgeries" placeholder="Operaciones quirúrgicas a las que se haya sometido (excluyendo la esterilización)">{{ Input::old('surgeries') }}</textarea>
+                <textarea class="form-control" rows="4" name="surgeries" id="surgeries" placeholder="Operaciones quirúrgicas a las que se haya sometido (con su fecha)">{{{ Input::old('surgeries') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
             <label for="treatment" class="col-sm-2 control-label">Tratamiento:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="treatment" id="treatment" placeholder="Tratamientos médicos que deba seguir">{{ Input::old('treatment') }}</textarea>
+                <textarea class="form-control" rows="4" name="treatment" id="treatment" placeholder="Tratamientos médicos que deba seguir">{{{ Input::old('treatment') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
             <label for="privatecomments" class="col-sm-2 control-label">Observaciones:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="8" id="privatecomments" name="privatecomments" placeholder="Cualquier otra información de interés sobre este animal">{{ Input::old('privatecomments') }}</textarea>
+                <textarea class="form-control" rows="8" id="privatecomments" name="privatecomments" placeholder="Cualquier otra información de interés sobre este animal">{{{ Input::old('privatecomments') }}}</textarea>
             </div>
         </div>
 

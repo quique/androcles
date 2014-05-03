@@ -7,7 +7,7 @@
             <h2>{{ $title }}</h2>
         </div>
 
-        <h3>¿Seguro que desea borrar {{ $animal->name }}? </h3>
+        <h3>¿Seguro que desea borrar a {{{ $animal->name }}}? </h3>
         {{ Form::open(['url'=> '#', 'class'=>'form']) }}
             {{ Form::hidden('id', $animal->id)}}
             <div class="form-group">

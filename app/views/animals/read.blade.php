@@ -15,9 +15,9 @@
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         @if($animal->pic)
-                            <a href={{ url('/animals/'.$animal->id) }}>
+                            <a href={{ action('AnimalsController@readSingle', $animal->id) }}>
                             <img src="{{ asset("/images/animalthumbs/".$animal->pic) }}"
-                            alt="Foto de {{ $animal->name }}"></a>
+                            alt="Foto de {{{ $animal->name }}}"></a>
                         @endif
                         <div class="caption">
                             <p class="pull-right"><span style="font-size: 32px;">
@@ -27,17 +27,17 @@
                                 &#9792;
                             @endif
                             </span></p>
-                            <h3><a href={{ url('/animals/'.$animal->id) }}>{{ $animal->name }}</a></h3>
-                            <p>{{ $animal->comments }}</p>
+                            <h3><a href={{ action('AnimalsController@readSingle', $animal->id) }}>{{{ $animal->name }}}</a></h3>
+                            <p>{{{ $animal->comments }}}</p>
                         </div>
                     </div>
-                    <p class="thumbfooter"><a href={{ url('/animals/'.$animal->id) }}>Sigue leyendo</a></p>
+                    <p class="thumbfooter"><a href={{ action('AnimalsController@readSingle', $animal->id) }}>Sigue leyendo</a></p>
                 </div>
                 @if ($i++ % 3 == 0)
                     <br style="clear: both;">
                 @endif
             @endforeach
         @endif
-</section>
+    </section>
 </div>
 @stop

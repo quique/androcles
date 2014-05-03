@@ -4,7 +4,7 @@
     <section class="header section-padding">
         <div class="container">
             <div class="header-text">
-                <h1>{{ $title }}</small></h1>
+                <h1>{{ $title }}</h1>
             </div>
         </div>
     </section>
