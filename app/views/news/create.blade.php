@@ -16,16 +16,16 @@
             <label for="title">Título</label>
             <input type="text" class="form-control" name="title" placeholder="Título de la noticia" value="{{{ Input::old('title') }}}" />
             @if($errors->has('title'))
-                <p class="text-danger">Verifique este campo.</p>
+                <p class="text-danger">{{ $errors->get('title')[0] }}</p>
             @endif
         </div>
+
         <div class="form-group">
             <label for="body">Cuerpo</label>
             <textarea class="form-control" rows="6" name="body" placeholder="Cuerpo de la noticia">{{{ Input::old('body') }}}</textarea>
-            @if($errors->has('body'))
-                <p class="text-danger">Verifique este campo.</p>
-            @endif
+            {{ $errors->first('body', '<p class="text-danger">:message</p>') }}
         </div>
+        
         <div class="form-group">
             <label for="photo">Imagen</label>
             <input type="file" name="photo" id="photo" />

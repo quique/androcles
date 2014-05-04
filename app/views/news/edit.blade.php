@@ -18,16 +18,14 @@
             <label for="title">Título</label>
             <input type="text" class="form-control" name="title" placeholder="Título de la noticia" value="{{{ $news->title }}}" />
             @if($errors->has('title'))
-                <p class="text-danger">Verifique este campo.</p>
+                <p class="text-danger">{{ $errors->get('title')[0] }}</p>
             @endif
         </div>
         
         <div class="form-group">
             <label for="body">Cuerpo</label>
             <textarea class="form-control" rows="6" name="body" placeholder="Cuerpo de la noticia">{{{ $news->body }}}</textarea>
-            @if($errors->has('body'))
-                <p class="text-danger">Verifique este campo.</p>
-            @endif
+            {{ $errors->first('body', '<p class="text-danger">:message</p>') }}
         </div>
 
         <div class="form-group">
