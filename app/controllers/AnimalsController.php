@@ -6,7 +6,7 @@ class AnimalsController extends BaseController
     {
         $species = array('' => 'Seleccione la especie') + Species::lists('name', 'id'); // TODO: i18n & l10n
         $sexes = Sex::lists('name', 'id');
-        $colors = ['' => 'Seleccione el color'] + Color::lists('name', 'id');
+        $colors = ['' => 'Seleccione el color'] + Color::orderBy('name')->lists('name', 'id');
         $coats = ['' => 'Seleccione el pelaje'] + Coat::lists('description', 'id');
         $statuses = ['' => 'Seleccione el estado'] + Status::lists('name', 'id');
         return View::make('animals.create', [
@@ -195,7 +195,7 @@ class AnimalsController extends BaseController
 
         $species = array('' => 'Seleccione la especie') + Species::lists('name', 'id');
         $sexes = Sex::lists('name', 'id');
-        $colors = ['' => 'Seleccione el color'] + Color::lists('name', 'id');
+        $colors = ['' => 'Seleccione el color'] + Color::orderBy('name')->lists('name', 'id');
         $coats = ['' => 'Seleccione el pelaje'] + Coat::lists('description', 'id');
         $statuses = ['' => 'Seleccione el estado'] + Status::lists('name', 'id');
 

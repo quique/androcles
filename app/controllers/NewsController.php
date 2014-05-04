@@ -7,7 +7,7 @@ class NewsController extends BaseController
      */
     public function index()
     {
-        $news = News::where('id', '>', 0)->orderBy('created_at', 'desc')->get(); /* XXX */
+        $news = News::orderBy('created_at', 'DESC')->get();
         foreach ($news as $item)
             $item['pic'] = $item->pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
 
@@ -119,7 +119,6 @@ class NewsController extends BaseController
         $thumbnails_dir  = public_path() ."/images/newsthumbs/";
 
         /* Delete the selected pictures */
-        //$picstodelete = isset($input['picstodelete']) ? $input['picstodelete'] : [];
         $picstodelete = Input::get('picstodelete');
         if (count($picstodelete) > 0) {
             foreach($picstodelete as $picId) {
