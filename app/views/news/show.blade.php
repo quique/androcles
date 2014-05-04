@@ -22,7 +22,7 @@
             <div class="carousel-inner">
                 @foreach($pics as $pic)
                     <div class="item {{ $pic == $pics->first() ? 'active' : '' }}">
-                        <img src="{{ asset("images/newspics/$pic->filename") }}" class="img-responsive" alt="Imagen de la noticia">
+                        <img src="{{ asset("images/newspics/$pic->filename") }}" class="img-responsive" alt="{{ trans('news.image') }}">
                     </div>
                 @endforeach
             </div>
@@ -41,8 +41,8 @@
         {{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($news->body, ENT_QUOTES, 'UTF-8')) }}
 
         <br><br><div>
-            <a href="{{ action('NewsController@delete', $news->id) }}" class="btn btn-danger">Eliminar</a>
-            <a href="{{ action('NewsController@edit', $news->id) }}" class="btn btn-warning">Editar</a>
+            <a href="{{ action('NewsController@delete', $news->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
+            <a href="{{ action('NewsController@edit', $news->id) }}" class="btn btn-warning">{{ trans('news.edit') }}</a>
         </div>
     </div>
 @stop

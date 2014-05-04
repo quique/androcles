@@ -4,24 +4,24 @@
     <section class="header section-padding">
         <div class="container">
             <div class="header-text">
-                <h1>{{ $title }}</h1>
+                <h1>{{ trans($title) }}</h1>
             </div>
         </div>
     </section>
 
     <div class="container">
         <div class="pull-right">
-            <a href="{{ action('NewsController@create') }}" class="btn btn-primary">Crear noticia</a>
+            <a href="{{ action('NewsController@create') }}" class="btn btn-primary">{{ trans('news.create') }}</a>
         </div>
 
         @if ($news->isEmpty())
-            <p>Todavía no hay ninguna noticia :(</p>
+            <p>{{ trans("news.no-news") }}</p>
         @else
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Título</th>
+                        <th>{{ trans('news.date') }}</th>
+                        <th>{{ trans('news.title') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,8 +30,8 @@
                             <td>{{ strftime('%d-%m-%Y', strtotime($item->created_at)) }}</td>
                             <td><a href="{{ action('NewsController@show', $item->id) }}">{{{ $item->title }}}</a></td>
                             <td>
-                                <a href="{{ action('NewsController@delete', $item->id) }}" class="btn btn-danger">Eliminar</a>
-                                <a href="{{ action('NewsController@edit', $item->id) }}" class="btn btn-warning">Editar</a>
+                                <a href="{{ action('NewsController@delete', $item->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
+                                <a href="{{ action('NewsController@edit', $item->id) }}" class="btn btn-warning">{{ trans('news.edit') }}</a>
                             </td>
                         </tr>
                     @endforeach

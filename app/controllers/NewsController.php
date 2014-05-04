@@ -13,7 +13,7 @@ class NewsController extends BaseController
 
         return View::make('news.index', [
             'news'  => $news,
-            'title' => "Todas las noticias"
+            'title' => "news.all"
         ]);
     }
 
@@ -36,7 +36,7 @@ class NewsController extends BaseController
     public function create()
     {
         return View::make('news.create', [
-            'title' => "Añadir una noticia"
+            'title' => "news.add"
         ]);
     }
     
@@ -91,7 +91,7 @@ class NewsController extends BaseController
         return View::make('news.edit', [
             'news'  => $news,
             'pics'  => $pics,
-            'title' => 'Edición de una noticia',
+            'title' => 'news.edition',
         ]);
     }
     
@@ -156,7 +156,7 @@ class NewsController extends BaseController
     {
         return View::make('news.delete', [
             'news'  => $news,
-            'title' => 'Eliminar noticia'
+            'title' => 'news.removal'
         ]);
     }
     

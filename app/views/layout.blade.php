@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{{ $title }}}</title>
+    <title>{{{ trans($title) }}}</title>
 
     {{ HTML::style('http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css') }}
     {{-- HTML::script('http://code.jquery.com/jquery-2.1.0.min.js') --}}
@@ -38,7 +38,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">{{ Lang::get("layout.Toggle") }}</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -49,30 +49,30 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Animales</a>
+                    <li><a href="#">{{ Lang::get("layout.Animals") }}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">En adopción</a>
+                            <li><a href="#">{{ Lang::get("layout.Up-for-adoption") }}</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/animals/up-for-adoption/dogs">Perros</a></li>
-                                    <li><a href="/animals/up-for-adoption/cats">Gatos</a></li>
-                                    <li><a href="/animals/up-for-adoption/others">Otros</a></li>
+                                    <li><a href="/animals/up-for-adoption/dogs">{{ Lang::get("layout.Dogs") }}</a></li>
+                                    <li><a href="/animals/up-for-adoption/cats">{{ Lang::get("layout.Cats") }}</a></li>
+                                    <li><a href="/animals/up-for-adoption/others">{{ Lang::get("layout.Others") }}</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/animals/lost">Perdidos y encontrados</a></li>
-                            <li><a href="/animals/particular">De particulares</a></li>
-                            <li><a href="/animals/happy-endings">Finales felices</a>
+                            <li><a href="/animals/lost">{{ Lang::get("layout.Lost-found") }}</a></li>
+                            <li><a href="/animals/particular">{{ Lang::get("layout.Particular") }}</a></li>
+                            <li><a href="/animals/happy-endings">{{ Lang::get("layout.Happy-endings") }}</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/animals/happy-endings/dogs">Perros</a></li>
-                                    <li><a href="/animals/happy-endings/cats">Gatos</a></li>
-                                    <li><a href="/animals/happy-endings/others">Otros</a></li>
+                                    <li><a href="/animals/happy-endings/dogs">{{ Lang::get("layout.Dogs") }}</a></li>
+                                    <li><a href="/animals/happy-endings/cats">{{ Lang::get("layout.Cats") }}</a></li>
+                                    <li><a href="/animals/happy-endings/others">{{ Lang::get("layout.Others") }}</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/animals/in-our-heart">En nuestro corazón</a></li>
+                            <li><a href="/animals/in-our-heart">{{ Lang::get("layout.In-our-heart") }}</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ action('AnimalsController@create') }}">Añadir un animal</a></li>
+                            <li><a href="{{ action('AnimalsController@create') }}">{{ Lang::get("layout.Add-animal") }}</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ action('NewsController@index') }}">Noticias</a></li>
+                    <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
