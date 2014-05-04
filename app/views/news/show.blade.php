@@ -14,7 +14,7 @@
         <div id="myCarousel" class="carousel slide">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                @for ($i = 0; $i < count($pics); $i++)
+                @for ($i = 0; $i < count($pics); ++$i)
                     <li data-target="#myCarousel" data-slide-to="{{ $i }}" {{ $i == 0 ? 'class="active"' : '' }}></li>
                 @endfor
             </ol>
@@ -22,7 +22,7 @@
             <div class="carousel-inner">
                 @foreach($pics as $pic)
                     <div class="item {{ $pic == $pics->first() ? 'active' : '' }}">
-                        <img src="/images/newspics/{{ $pic->filename }}" class="img-responsive" alt="Imagen de la noticia">
+                        <img src="{{ asset("images/newspics/$pic->filename") }}" class="img-responsive" alt="Imagen de la noticia">
                     </div>
                 @endforeach
             </div>

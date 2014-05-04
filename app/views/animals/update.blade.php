@@ -3,9 +3,8 @@
 
 <div class="container">
     <div class="page-header">
-        <h2>{{{ $title }}}</h2>
+        <h1>{{{ $title }}}</h1>
     </div>
-
 
     {{ Form::open(['url'=> '#', 'class'=>'form-horizontal', 'files' => true]) }}
         {{ Form::hidden('id', $animal->id) }}
@@ -151,7 +150,7 @@
         @endif
 
 
-        <h2>Información interna</h2>
+        <h2 style="margin-top: 35px; margin-bottom: 20px;">Información interna</h2>
 
         <div class="form-group">
             {{ Form::label('provenance', 'Lugar de procedencia:', ['class' => 'col-sm-2 control-label']) }}

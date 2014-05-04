@@ -16,20 +16,26 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::pattern('text_slug', '[a-z\-]+');
-Route::pattern('id_slug', '[0-9]+');
-
-Route::get('/animals', 'AnimalsController@read');
-Route::get('/animals/create', 'AnimalsController@create');
-Route::post('/animals/create', ['before'=>'csrf', 'uses' => 'AnimalsController@saveCreate']);
-Route::get('/animals/{id_slug}', 'AnimalsController@readSingle');
-Route::model('animal','Animal');
-Route::get('/animals/{animal}/update', 'AnimalsController@update');
-Route::post('/animals/{animal}/update', ['before'=>'csrf', 'uses' => 'AnimalsController@saveUpdate']);
-Route::get('/animals/{text_slug}', 'AnimalsController@readStatus');
-Route::get('/animals/{animal}/delete', 'AnimalsController@delete');
-Route::post('/animals/{animal}/delete', ['before'=>'csrf', 'uses' => 'AnimalsController@doDelete']);
-
+Route::group(array('prefix' => 'animals'), function()
+{
+    // Bind route parameters.
+    Route::pattern('status', '[a-z\-]+');
+    //Route::pattern('species', '[0-9]+');
+    Route::pattern('species', '[a-z\-]+');
+    Route::model('animal','Animal');
+    // Show pages
+    Route::get('/', 'AnimalsController@read');
+    Route::get('/create', 'AnimalsController@create');
+    Route::get('/{status}', 'AnimalsController@readStatus');
+    Route::get('/{status}/{species}', 'AnimalsController@readStatusSpecies');
+    Route::get('/{animal}', 'AnimalsController@readSingle');
+    Route::get('/{animal}/update', 'AnimalsController@update');
+    Route::get('{animal}/delete', 'AnimalsController@delete');
+    // Handle form submissions.
+    Route::post('/create', ['before'=>'csrf', 'uses' => 'AnimalsController@saveCreate']);
+    Route::post('/{animal}/update', ['before'=>'csrf', 'uses' => 'AnimalsController@saveUpdate']);
+    Route::post('/{animal}/delete', ['before'=>'csrf', 'uses' => 'AnimalsController@doDelete']);
+});
 
 Route::group(array('prefix' => 'news'), function()
 {

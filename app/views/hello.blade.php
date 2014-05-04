@@ -6,7 +6,7 @@
     <div class="background">&nbsp;</div>
     <div class="container">
         <div class="header-text">
-            <h1>Androcles <small>Un CMS para protectoras</small></h1>
+            <h1>Androcles <small>Un CMS para protectoras de animales</small></h1>
         </div>
     </div>
 </section>

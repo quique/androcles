@@ -33,8 +33,6 @@ class AnimalsController extends BaseController
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
             return Redirect::action('AnimalsController@create')->withErrors($validator)->withInput();
-            //return Redirect::action('AnimalsController@create')->withErrors($validator)->withInput();
-            return Redirect::to('animals/create')->withInput()->withErrors($validator);
         }
 
         $animal = new Animal;
@@ -67,20 +65,20 @@ class AnimalsController extends BaseController
             // $file = Input::file('photo');
             // $filename = $file->getClientOriginalName();
             // $extension = $file->getClientOriginalExtension();
-            $destination_path = public_path() ."/images/animalpics/";
-            $thumbnails_path  = public_path() ."/images/animalthumbs/";
-            $destination_filename = $animal->id . '_' . str_random(6) . '.jpg';
+            $images_dir = public_path() ."/images/animalpics/";
+            $thumbnails_dir  = public_path() ."/images/animalthumbs/";
+            $filename = $animal->id . '_' . str_random(6) . '.jpg';
 
             try {
-                $movedfile = Input::file('photo')->move($destination_path, $destination_filename);
-                AnimalsController::resizeImage($destination_path . $destination_filename, $thumbnails_path . $destination_filename, 320, 240);
-                AnimalsController::resizeImage($destination_path . $destination_filename, $destination_path . $destination_filename, 960, 720);
+                $movedfile = Input::file('photo')->move($images_dir, $filename);
+                AnimalsController::resizeImage($images_dir . $filename, $thumbnails_dir . $filename, 320, 240);
+                AnimalsController::resizeImage($images_dir . $filename, $images_dir . $filename, 960, 720);
             } catch(Exception $e) {
                 die($e->getMessage());
             }
 
             $pic = new AnimalPic();
-            $pic->filename = $destination_filename;
+            $pic->filename = $filename;
             $pic->animal_id = $animal->id;
             $pic->save();
         }
@@ -92,12 +90,15 @@ class AnimalsController extends BaseController
     public function read()
     {
         $animals = Animal::all();
-        foreach ($animals as $animal)
+        foreach ($animals as $animal) {
             $animal['pic'] = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
-        
+            if (!$animal['pic'])
+                $animal['pic'] = "nopic.jpg";
+        }
+
         return View::make('animals.read', [
             'animals' => $animals,
-            'title' => "Todos los animales"]);
+            'title'   => "Todos los animales"]);
         // return View::make('animals.read', compact('animals'));
         // return View::make('animals.read')->with('animals', $animals);
     }
@@ -120,27 +121,71 @@ class AnimalsController extends BaseController
             $animals = Animal::whereBetween('status_id', [35, 40])->get();
             $title = "Siempre en nuestro corazón";
         } else {
-            $animals = Animal::where('status_id', '<=', 10)->get();
-            $title = "Animales en adopción";
+            return Redirect::action('AnimalsController@readStatus', "up-for-adoption");
         }
 
         foreach ($animals as $animal) {
             $animal['pic'] = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
+            if (!$animal['pic'])
+                $animal['pic'] = "nopic.jpg";
+        }
+
+        return View::make('animals.read', [
+            'animals' => $animals,
+            'title'   => $title]);
+    }
+
+    public function readSingle(Animal $animal)
+    {
+        $pics = $animal->animal_pics()->get();
+        return View::make('animals.readsingle', [
+            'animal' => $animal,
+            'pics'   => $pics,
+            'title'  => "Información sobre $animal->name"]);
+    }
+
+
+    public function readStatusSpecies($status, $species)
+    {
+        if ($species == "dogs") {
+            $animals = Animal::whereSpeciesId(1);
+            $species_name = "Perros";
+        } elseif ($species == "cats") {
+            $animals = Animal::whereSpeciesId(2);
+            $species_name = "Gatos";
+        } else {
+            $animals = Animal::where('species_id', '>', 2);
+            $species_name = "Otros";
+        }
+        
+        if ($status == "up-for-adoption") {
+            $animals = $animals->where('status_id', '<=', 10)->get();
+            $title = "$species_name en adopción";
+        } elseif ($status == 'lost') {
+            $animals = $animals->whereIn('status_id', [13, 25, 30])->get();
+            $title = "$species_name perdidos y encontrados";
+        } elseif ($status == 'particular') {
+            $animals = $animals->whereStatusId(14)->get();
+            $title = "$species_name de particulares";
+        } elseif ($status == 'happy-endings') {
+            $animals = $animals->whereBetween('status_id', [15, 20])->get();
+            $title = "$species_name con final feliz";
+        } elseif ($status == 'in-our-heart') {
+            $animals = Animal::whereSpeciesId($species_id)->whereBetween('status_id', [35, 40])->get();
+            $title = "$species_name en nuestro corazón";
+        } else {
+            return Redirect::action('AnimalsController@readStatus', "up-for-adoption");
+        }
+
+        foreach ($animals as $animal) {
+            $animal['pic'] = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
+            if (!$animal['pic'])
+                $animal['pic'] = "nopic.jpg";
         }
 
         return View::make('animals.read', [
             'animals' => $animals,
             'title' => $title]);
-    }
-
-    public function readSingle($id)
-    {
-        $animal = Animal::find($id);
-        $animal_pics = $animal->animal_pics()->get();
-        return View::make('animals.readsingle', [
-            'animal' => $animal,
-            'animal_pics' => $animal_pics,
-            'title'  => "Información sobre $animal->name"]);
     }
 
 
@@ -208,34 +253,34 @@ class AnimalsController extends BaseController
         $animal->save();
 
         
-        $destination_path = public_path() ."/images/animalpics/";
-        $thumbnails_path  = public_path() ."/images/animalthumbs/";
+        $images_dir = public_path() ."/images/animalpics/";
+        $thumbnails_dir  = public_path() ."/images/animalthumbs/";
 
         /* Delete the selected pictures */
-        $picstodelete = isset($input['picstodelete']) ? $input['picstodelete'] : [];
+        $picstodelete = Input::get('picstodelete');
         if (count($picstodelete) > 0) {
             foreach($picstodelete as $picId) {
                 $pic = AnimalPic::findOrFail($picId);
-                unlink($destination_path . $pic->filename); // "Delete" the file.
-                unlink($thumbnails_path . $pic->filename);
+                unlink($images_dir . $pic->filename); // "Delete" the file.
+                unlink($thumbnails_dir . $pic->filename);
                 $pic->delete();
             }
         }
 
         /* Add new picture */
         if (Input::hasFile('photo') and Input::file('photo')->getMimeType() == "image/jpeg") {
-            $destination_filename = $animal->id . '_' . str_random(6) . '.jpg';
+            $filename = $animal->id . '_' . str_random(6) . '.jpg';
 
             try {
-                $movedfile = Input::file('photo')->move($destination_path, $destination_filename);
-                AnimalsController::resizeImage($destination_path . $destination_filename, $thumbnails_path . $destination_filename, 320, 240);
-                AnimalsController::resizeImage($destination_path . $destination_filename, $destination_path . $destination_filename, 960, 720);
+                $movedfile = Input::file('photo')->move($images_dir, $filename);
+                $this->resizeImage($images_dir . $filename, $thumbnails_dir . $filename, 320, 240);
+                $this->resizeImage($images_dir . $filename, $images_dir . $filename, 960, 720);
             } catch(Exception $e) {
                 die($e->getMessage());
             }
 
             $pic = new AnimalPic();
-            $pic->filename = $destination_filename;
+            $pic->filename = $filename;
             $pic->animal_id = $animal->id;
             $pic->save();
         }
@@ -257,12 +302,12 @@ class AnimalsController extends BaseController
     {
         $animal = Animal::findOrFail(Input::get('id'));
 
-        $destination_path = public_path() ."/images/animalpics/";
-        $thumbnails_path  = public_path() ."/images/animalthumbs/";
+        $images_dir = public_path() ."/images/animalpics/";
+        $thumbnails_dir  = public_path() ."/images/animalthumbs/";
         $pics = AnimalPic::whereAnimalId(Input::get('id'))->get();
         foreach ($pics as $pic) {
-            unlink($destination_path . $pic->filename); // "Delete" the file.
-            unlink($thumbnails_path . $pic->filename);
+            unlink($images_dir . $pic->filename); // "Delete" the file.
+            unlink($thumbnails_dir . $pic->filename);
             $pic->delete();
         }
         

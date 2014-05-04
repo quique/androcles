@@ -8,19 +8,19 @@
     </div>
 </div>
 
-<div id="myCarousel" class="carousel slide col-md-offset-3 col-md-6">
+@if (count($pics) > 0)
+<div id="myCarousel" class="container carousel slide">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <!-- {{ $i = 0 }} -->
-        @foreach($animal_pics as $pic)
-            <li data-target="#myCarousel" data-slide-to="{{ $i++ }}" {{ $pic == $animal_pics->first() ? 'class="active"' : '' }}></li>
-        @endforeach
+        @for ($i = 0; $i < count($pics); ++$i)
+            <li data-target="#myCarousel" data-slide-to="{{ $i }}" {{ $i == 0 ? 'class="active"' : '' }}></li>
+        @endfor
     </ol>
 
     <div class="carousel-inner">
-        @foreach($animal_pics as $pic)
-            <div class="item {{ $pic == $animal_pics->first() ? 'active' : '' }}">
-                <img src="{{ asset("/images/animalpics/$pic->filename") }}" class="img-responsive" alt="Foto de {{{ $animal->name }}}">
+        @foreach($pics as $pic)
+            <div class="item {{ $pic == $pics->first() ? 'active' : '' }}">
+                <img src="{{ asset("images/animalpics/$pic->filename") }}" class="img-responsive" alt="Foto de {{{ $animal->name }}}">
             </div>
         @endforeach
     </div>
@@ -34,57 +34,62 @@
     </a>
 </div>
 <!-- /.carousel -->
+<br style="clear: both;">
+@endif
 
-<div class="row">
-    <div class="col-md-offset-3 col-md-6">
-        <p style="margin-top: 20px;">{{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($animal->comments, ENT_QUOTES, 'UTF-8')) }}</p>
+<div class="container col-md-offset-3 col-md-6">
+    <div class="fb-like" data-href="{{ URL::current() }}" data-send="true" data-width="450" data-show-faces="true"></div><br />
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3>Datos</h3></div>
-            <table class="table" summary="Ficha de {{{ $animal->name }}}">
-                <tr><td><strong>Nombre del animal:</strong></td>
-                    <td>{{{ $animal->name }}}</td></tr>
+    <p style="margin-top: 20px;">{{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($animal->comments, ENT_QUOTES, 'UTF-8')) }}</p>
 
-                <tr><td><strong>Especie:</strong></td>
-                    <td>{{ $animal->species()->first()->name }}</td></tr>
+    @if ($animal->youtube) 
+        <iframe width='640' height='480' src="http://www.youtube.com/embed/$animal->youtube" frameborder='0' allowfullscreen></iframe><br /><br />
+    @endif
 
-                <tr><td><strong>Raza:</strong></td>
-                    <td>{{{ $animal->breed }}}</td></tr>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Datos</h3></div>
+        <table class="table" summary="Ficha de {{{ $animal->name }}}">
+            <tr><td><strong>Nombre del animal:</strong></td>
+                <td>{{{ $animal->name }}}</td></tr>
 
-                <tr><td><strong>Tamaño:</strong></td>
-                    <td>{{{ $animal->size }}}</td></tr>
+            <tr><td><strong>Especie:</strong></td>
+                <td>{{ $animal->species()->first()->name }}</td></tr>
 
-                <tr><td><strong>Peso:</strong></td>
-                    <td>{{{ $animal->weight }}}</td></tr>
+            <tr><td><strong>Raza:</strong></td>
+                <td>{{{ $animal->breed }}}</td></tr>
 
-                <tr><td><strong>Sexo:</strong></td>
-                    <td>{{ $animal->sex()->first()->name }}</td></tr>
+            <tr><td><strong>Tamaño:</strong></td>
+                <td>{{{ $animal->size }}}</td></tr>
 
-                <tr><td><strong>Esterilizado:</strong></td>
-                    <td>{{ $animal->neutered ? 'Sí' : 'No' }}</td></tr>
+            <tr><td><strong>Peso:</strong></td>
+                <td>{{{ $animal->weight }}}</td></tr>
 
-                <tr><td><strong>Fecha de nacimiento:</strong></td>
-                    <td>{{ $animal->dateofbirth }}</td></tr>
+            <tr><td><strong>Sexo:</strong></td>
+                <td>{{ $animal->sex()->first()->name }}</td></tr>
 
-                <tr><td><strong>Fecha de ingreso:</strong></td>
-                    <td>{{ $animal->dateofarrival }}</td></tr>
+            <tr><td><strong>Esterilizado:</strong></td>
+                <td>{{ $animal->neutered ? 'Sí' : 'No' }}</td></tr>
 
-                <tr><td><strong>Color:</strong></td>
-                    <td>{{ $animal->color()->first()->name }}</td></tr>
+            <tr><td><strong>Fecha de nacimiento:</strong></td>
+                <td>{{ strftime('%d-%m-%Y', strtotime($animal->dateofbirth)) }}</td></tr>
 
-                <tr><td><strong>Pelaje:</strong></td>
-                    <td>{{ $animal->coat()->first()->description }}</td></tr>
+            <tr><td><strong>Fecha de ingreso:</strong></td>
+                <td>{{ strftime('%d-%m-%Y', strtotime($animal->dateofarrival)) }}</td></tr>
 
-                <tr><td><strong>Situación:</strong></td>
-                    <td>{{ $animal->status()->first()->name }}</td></tr>
-            </table>
-        </div>
+            <tr><td><strong>Color:</strong></td>
+                <td>{{ $animal->color()->first()->name }}</td></tr>
 
-        <div>
-            <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">Borrar</a>
-            <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a>
-        </div><br><br>
+            <tr><td><strong>Pelaje:</strong></td>
+                <td>{{ $animal->coat()->first()->description }}</td></tr>
 
+            <tr><td><strong>Situación:</strong></td>
+                <td>{{ $animal->status()->first()->name }}</td></tr>
+        </table>
     </div>
+
+    <div>
+        <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">Borrar</a>
+        <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a>
+    </div><br><br>
 </div>
 @stop
