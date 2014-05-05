@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+    return View::make('hello')->with('title', "Androcles - Un CMS para protectoras de animales");
 });
 
 Route::group(array('prefix' => 'animals'), function()

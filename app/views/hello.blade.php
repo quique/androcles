@@ -1,5 +1,5 @@
 @extends('layout')
-<!-- {{ $title = "Androcles - Un CMS para protectoras"; }} -->
+
 @section('content')
 
 <section class="header section-padding">
