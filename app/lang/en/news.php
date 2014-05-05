@@ -10,6 +10,7 @@ return array(
     */
 
     'add'           => "Add news",
+    'admin'         => "Administración",
     'all'           => 'All the news',
     'body'          => 'Body',
     'cancel'        => 'Cancel',

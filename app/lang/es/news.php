@@ -10,6 +10,7 @@ return array(
     */
 
     'add'           => "Añadir una noticia",
+    'admin'         => "Administración",
     'all'           => 'Todas las noticias',
     'body'          => 'Cuerpo',
     'cancel'        => 'Cancelar',

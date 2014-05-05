@@ -22,6 +22,7 @@
                     <tr>
                         <th>{{ trans('news.date') }}</th>
                         <th>{{ trans('news.title') }}</th>
+                        <th>{{ trans('news.admin') }}</th>
                     </tr>
                 </thead>
                 <tbody>
