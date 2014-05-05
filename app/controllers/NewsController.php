@@ -17,6 +17,7 @@ class NewsController extends BaseController
         ]);
     }
 
+
     /**
      * Show a news item.
      */
@@ -29,7 +30,8 @@ class NewsController extends BaseController
             'title' => $news->title
         ]);
     }
-    
+
+
     /**
      * Show the create news form.
      */
@@ -39,7 +41,8 @@ class NewsController extends BaseController
             'title' => "news.add"
         ]);
     }
-    
+
+
     /**
      * Handle create form submission.
      */
@@ -82,6 +85,7 @@ class NewsController extends BaseController
         return Redirect::action('NewsController@show', ['id' => $news->id]);
     }
 
+
     /**
      * Show the edit news form.
      */
@@ -94,7 +98,8 @@ class NewsController extends BaseController
             'title' => 'news.edition',
         ]);
     }
-    
+
+
     /**
      * Handle edit form submission.
      */
@@ -148,7 +153,8 @@ class NewsController extends BaseController
 
         return Redirect::action('NewsController@show', ['id' => $news->id]);
     }
-    
+
+
     /**
      * Show delete confirmation page.
      */
@@ -159,7 +165,8 @@ class NewsController extends BaseController
             'title' => 'news.removal'
         ]);
     }
-    
+
+
     /**
      * Handle the delete confirmation.
      */
@@ -167,6 +174,16 @@ class NewsController extends BaseController
     {
         $id = Input::get('news');
         $news = News::findOrFail($id);
+
+        $images_dir = public_path() ."/images/newspics/";
+        $thumbnails_dir  = public_path() ."/images/newsthumbs/";
+        $pics = NewsPic::whereNewsId($id)->get();
+        foreach ($pics as $pic) {
+            unlink($images_dir . $pic->filename); // "Delete" the file.
+            unlink($thumbnails_dir . $pic->filename);
+            $pic->delete();
+        }
+
         $news->delete();
         return Redirect::action('NewsController@index');
     }
@@ -201,3 +218,4 @@ class NewsController extends BaseController
         imagedestroy($image_p);
     }
 }
+
