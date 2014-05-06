@@ -37,5 +37,6 @@ CD into the directory of this project and run the following three commands:
 1. `composer install`
 2. `php artisan migrate`
 3. `php artisan db:seed`
+4. Copy the folders of the languages you want from the "vendor/caouecs/laravel4-lang" directory to "app/lang".
 
 This will install all Composer dependencies, create the database structure and populate the database with some sample data so that you could see this project in action.
