@@ -78,3 +78,26 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+Route::filter('isGuest', function()
+{
+    if (Sentry::check()) {
+        return Redirect::route('home');
+    }
+});
+
+
+Route::filter('hasAccess', function()
+{
+    if (!Sentry::check()) {
+        // Using Redirect::guest instead of Redirect::to,
+        // in order to make the Redirect::intended work later on.
+        return Redirect::guest(URL::route('login'));
+    }
+
+    $user = Sentry::getUser();
+    $action = Route::getCurrentRoute()->getAction();
+
+    if (!$user->hasAccess($action['as'])) return Redirect::route('home');
+});

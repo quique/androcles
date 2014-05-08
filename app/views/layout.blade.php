@@ -70,17 +70,23 @@
                                 </ul>
                             </li>
                             <li><a href="/animals/in-our-heart">{{ Lang::get("layout.In-our-heart") }}</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ action('AnimalsController@create') }}">{{ Lang::get("layout.Add-animal") }}</a></li>
+                            @if (Sentry::check() and Sentry::getUser()->hasAccess('animals.create'))
+                                <li class="divider"></li>
+                                <li><a href="{{ action('AnimalsController@create') }}">{{ Lang::get("layout.Add-animal") }}</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
+                    @if (Sentry::check())
+                        <li><a href="{{ URL::route('logout') }}">{{ Lang::get("layout.logout") }}</a></li>
+                    @else
+                        <li>{{ HTML::linkRoute('login', trans("layout.log-in")) }}</li>
+                    @endif
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
     </header>
-
 
 @yield('content')
 

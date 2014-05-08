@@ -50,7 +50,7 @@
 
     <p style="margin-top: 20px;">{{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($animal->comments, ENT_QUOTES, 'UTF-8')) }}</p>
 
-    @if ($animal->youtube) 
+    @if ($animal->youtube)
         <iframe width='640' height='480' src="http://www.youtube.com/embed/$animal->youtube" frameborder='0' allowfullscreen></iframe><br /><br />
     @endif
 
@@ -95,9 +95,14 @@
         </table>
     </div>
 
+
     <div>
-        <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">Borrar</a>
-        <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a>
+        @if (Sentry::check() and Sentry::getUser()->hasAccess('animals.remove'))
+            <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">Borrar</a>
+        @endif
+        @if (Sentry::check() and Sentry::getUser()->hasAccess('animals.edit'))
+            <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a>
+        @endif
     </div><br><br>
 </div>
 @stop

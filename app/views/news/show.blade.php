@@ -40,9 +40,16 @@
 
         {{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($news->body, ENT_QUOTES, 'UTF-8')) }}
 
-        <br><br><div>
-            <a href="{{ action('NewsController@delete', $news->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
-            <a href="{{ action('NewsController@edit', $news->id) }}" class="btn btn-warning">{{ trans('news.edit') }}</a>
-        </div>
+        <br><br>
+        @if (Sentry::check())
+            <div>
+                @if (Sentry::getUser()->hasAccess('news.remove'))
+                    <a href="{{ action('NewsController@delete', $news->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
+                @endif
+                @if (Sentry::getUser()->hasAccess('news.edit'))
+                    <a href="{{ action('NewsController@edit', $news->id) }}" class="btn btn-warning">{{ trans('news.edit') }}</a>
+                @endif
+            </div>
+        @endif
     </div>
 @stop
