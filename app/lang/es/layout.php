@@ -21,6 +21,10 @@ return array(
     'News'          => 'Noticias',
     'Others'        => 'Otros',
     'Particular'    => 'De particulares',
+    'passwd'        => 'Cambiar la contraseña',
     'Toggle'        => 'Cambiar navegación',
     'Up-for-adoption' => 'En adopción',
+    'user'          => 'Usuario',
+    'user-index'    => 'Lista de usuarios',
+    'create-user'   => 'Crear usuario',
 );

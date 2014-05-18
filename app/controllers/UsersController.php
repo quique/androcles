@@ -1,8 +1,18 @@
 <?php
 
-use Auth, BaseController, Form, Input, Redirect, Sentry, View;
+use \Auth, \BaseController, \Form, \Input, \Redirect, \Sentry, \View;
 
 class UsersController extends BaseController {
+
+    /**
+     * Instantiate a new UsersController instance.
+     */
+    public function __construct()
+    {
+        $this->beforeFilter('hasAccess', array('except' => ['getLogin', 'postLogin', 'getLogout']));
+        $this->beforeFilter('isGuest', ['only' => 'getLogin']);
+        $this->beforeFilter('csrf', array('on' => 'post'));
+    }
 
     /**
      * Display the login page
@@ -32,7 +42,7 @@ class UsersController extends BaseController {
             // Log the user in and send him where he wanted to go
             $user = Sentry::authenticate($credentials, $remember);
             if ($user)
-                return Redirect::intended(URL::route('root'));
+                return Redirect::intended(URL::route('home'));
         } catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
             $message = 'users.login-required';
         } catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
@@ -57,7 +67,7 @@ class UsersController extends BaseController {
             $message = $e->getMessage();
         }
 
-       return Redirect::route('login')->withErrors(['login' => $message]);
+        return Redirect::route('login')->withErrors(['login' => $message]);
     }
 
 
@@ -69,6 +79,150 @@ class UsersController extends BaseController {
     {
         Sentry::logout();
         return Redirect::route('login');
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $users = User::orderBy('email', 'ASC')->get();
+        return View::make('users.index', [
+            'users' => $users,
+            'title' => "users.all"
+        ]);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return View::make('users.create')->with('title', "users.add");
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $input = Input::all();
+        $rules = [
+            'first_name' => 'required',
+            'email'      => 'required',
+            'password'   => 'required',
+        ];
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return Redirect::action('UsersController@create')->withErrors($validator)->withInput();
+        }
+
+        try {
+            Sentry::getUserProvider()->create(array(
+                'email'       => $input['email'],
+                'password'    => $input['password'],
+                'first_name'  => $input['first_name'],
+                'last_name'   => $input['last_name'],
+                'activated'   => 1,
+            ));
+        } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
+            return Redirect::action('UsersController@create')->withErrors(['message' => 'users.exists'])->withInput();
+        }
+
+        return Redirect::action('UsersController@index'); // @show', ['id' => $user->id]);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        return View::make('users.edit', [
+            'user'  => $id,
+            'title' => 'users.edition',
+        ]);
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        $input = Input::all();
+        try {
+            // Update the user details
+            $id->first_name = $input['first_name'];
+            $id->last_name = $input['last_name'];
+            $id->email = $input['email'];
+            // Update the user
+            if ($id->save()) {
+                    // User information was updated
+            } else {
+                    // User information was not updated
+            }
+        } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
+            return Redirect::action('UsersController@edit', $id)->withErrors(['message' => 'users.exists'])->withInput();
+        }
+        return Redirect::route('users.index');
+    }
+
+
+    /**
+     * Show delete confirmation page.
+     */
+    public function delete($id)
+    {
+        return View::make('users.delete', [
+            'user'  => $id,
+            'title' => 'users.removal'
+        ]);
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        // TODO: Evitar que el admin se pueda borrar a sí mismo?
+        try {
+            $id->delete;
+        } catch (Exception $e) {
+            //
+        }
+        return Redirect::route('users.index');
     }
 
 }

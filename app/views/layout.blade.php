@@ -78,7 +78,16 @@
                     </li>
                     <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
                     @if (Sentry::check())
-                        <li><a href="{{ URL::route('logout') }}">{{ Lang::get("layout.logout") }}</a></li>
+                        <li><a href="#">{{ trans("layout.user") }}</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ URL::route('users.password', Sentry::getUser()->id) }}">{{ trans("layout.passwd") }}</a></li>
+                                <li><a href="{{ URL::route('logout') }}">{{ Lang::get("layout.logout") }}</a></li>
+                                @if (Sentry::getUser()->inGroup(Sentry::getGroupProvider()->findByName('Admin')))
+                                    <li class="divider"></li>
+                                    <li>{{ HTML::linkRoute('users.index', trans("layout.user-index")) }}</li>
+                                    <li>{{ HTML::linkRoute('users.create', trans("layout.create-user")) }}</li>
+                                @endif
+                            </ul>
                     @else
                         <li>{{ HTML::linkRoute('login', trans("layout.log-in")) }}</li>
                     @endif

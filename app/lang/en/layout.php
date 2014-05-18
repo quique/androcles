@@ -21,6 +21,10 @@ return array(
     'News'          => 'News',
     'Others'        => 'Others',
     'Particular'    => 'Particular',
+    'passwd'        => 'Change password',
     'Toggle'        => 'Toggle navigation',
     'Up-for-adoption' => 'Up for adoption',
+    'user'          => 'User',
+    'user-index'    => 'Users list',
+    'create-user'   => 'Add new user',
 );

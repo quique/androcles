@@ -53,9 +53,25 @@ Route::group(array('prefix' => 'news'), function()
     Route::post('/delete', ['as'=>'news.delete', 'before'=>'csrf|hasAccess', 'uses' =>'NewsController@handleDelete']);
 });
 
+
 Route::group(array('prefix' => 'users'), function()
 {
-    Route::get('/logout', ['as' => 'logout', 'uses' => 'UsersController@getLogout']);
-    Route::get('/login', ['as' => 'login', 'before'=>'isGuest', 'uses' => 'UsersController@getLogin']);
-    Route::post('/login', ['as' => 'login.post', 'before'=>'csrf', 'uses' => 'UsersController@postLogin']);
+    // Bind route parameters.
+    Route::model('user', 'User');
+    // Show pages.
+    Route::get('/logout',           ['as' => 'logout',      'uses' => 'UsersController@getLogout']);
+    Route::get('/login',            ['as' => 'login',       'uses' => 'UsersController@getLogin']);
+
+    Route::get('/',                 ['as'=>'users.index',   'uses' => 'UsersController@index']);
+    Route::get('/create',           ['as'=>'users.create',  'uses' => 'UsersController@create']);
+    Route::get('/{user}',           ['as'=>'users.show',    'uses' => 'UsersController@show']);
+    Route::get('/{user}/edit',      ['as'=>'users.edit',    'uses' => 'UsersController@edit']);
+    Route::get('/{user}/password',  ['as'=>'users.password','uses' => 'UsersController@password']);
+    Route::get('/{user}/delete',    ['as'=>'users.delete',  'uses' => 'UsersController@delete']);
+    // Handle form submissions.
+    Route::post('/login',           ['as'=>'login.post',    'uses' => 'UsersController@postLogin']);
+    Route::post('/store',           ['as'=>'users.store',   'uses' => 'UsersController@store']);
+    Route::post('{user}/update',    ['as'=>'users.update',  'uses' => 'UsersController@update']);
+    Route::post('{user}/passwd',    ['as'=>'users.passwd',  'uses' => 'UsersController@passwd']);
+    Route::post('{user}/destroy',   ['as'=>'users.destroy', 'uses' => 'UsersController@destroy']);
 });

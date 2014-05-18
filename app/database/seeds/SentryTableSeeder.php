@@ -33,6 +33,15 @@ class SentryTableSeeder extends Seeder {
                 'news.update'    => 1,
                 'news.remove'    => 1,
                 'news.delete'    => 1,
+                'users.password' => 1,
+                'users.passwd'   => 1,
+                'users.index'    => 1,
+                'users.create'   => 1,
+                'users.store'    => 1,
+                'users.edit'     => 1,
+                'users.update'   => 1,
+                'users.delete'   => 1,
+                'users.destroy'  => 1,
             ],
         ]);
 
@@ -51,6 +60,8 @@ class SentryTableSeeder extends Seeder {
                 'news.update'    => 1,
                 'news.remove'    => 1,
                 'news.delete'    => 1,
+                'users.password' => 1,
+                'users.passwd'   => 1,
             ],
         ]);
 
