@@ -118,7 +118,7 @@ class UsersController extends BaseController {
         $input = Input::all();
         $rules = [
             'first_name' => 'required',
-            'email'      => 'required',
+            'email'      => 'required|email',
             'password'   => 'required|confirmed',
         ];
         $validator = Validator::make($input, $rules);
@@ -178,6 +178,15 @@ class UsersController extends BaseController {
     public function update($id)
     {
         $input = Input::all();
+        $rules = [
+            'first_name' => 'required',
+            'email'      => 'required|email|unique:users,email,'.$id->id,
+        ];
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return Redirect::route('users.edit', $input['id'])->withErrors($validator)->withInput();
+        }
+
         try {
             // Update the user details
             $id->first_name = $input['first_name'];
