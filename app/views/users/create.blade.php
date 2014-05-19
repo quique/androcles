@@ -33,7 +33,7 @@
             <label for="email">{{ trans('users.email') }}</label>
             <input type="text" class="form-control" name="email" id="email" placeholder="{{ trans('users.user-email') }}" value="{{{ Input::old('email') }}}" required />
             @if($errors->has('email'))
-                <p class="text-danger">{{ $errors->first('email') }}</p>
+                <p class="text-danger">{{ trans($errors->first('email')) }}</p>
             @endif
         </div>
 
@@ -44,6 +44,15 @@
                 <p class="text-danger">{{ $errors->first('password') }}</p>
             @endif
         </div>
+
+        <div class="form-group">
+            <label for="password_confirmation">{{ trans('users.password-confirmation') }}</label>
+            <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="{{ trans('users.user-password') }}" required />
+            @if($errors->has('password_confirmation'))
+                <p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
+            @endif
+        </div>
+
 
         <a href="{{ action('UsersController@index') }}" class="btn btn-danger">{{ trans('users.cancel') }}</a>
         <button type="reset" class="btn btn-warning">{{ trans('users.clean') }}</button>

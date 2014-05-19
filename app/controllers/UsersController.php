@@ -119,7 +119,7 @@ class UsersController extends BaseController {
         $rules = [
             'first_name' => 'required',
             'email'      => 'required',
-            'password'   => 'required',
+            'password'   => 'required|confirmed',
         ];
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
@@ -135,7 +135,7 @@ class UsersController extends BaseController {
                 'activated'   => 1,
             ));
         } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
-            return Redirect::action('UsersController@create')->withErrors(['message' => 'users.exists'])->withInput();
+            return Redirect::action('UsersController@create')->withErrors(['email' => 'users.user-exists'])->withInput();
         }
 
         return Redirect::action('UsersController@index'); // @show', ['id' => $user->id]);
@@ -190,7 +190,7 @@ class UsersController extends BaseController {
                     // User information was not updated
             }
         } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
-            return Redirect::action('UsersController@edit', $id)->withErrors(['message' => 'users.exists'])->withInput();
+            return Redirect::action('UsersController@edit', $id)->withErrors(['email' => 'users.user-exists'])->withInput();
         }
         return Redirect::route('users.index');
     }
