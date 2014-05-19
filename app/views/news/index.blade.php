@@ -24,7 +24,7 @@
                     <tr>
                         <th>{{ trans('news.date') }}</th>
                         <th>{{ trans('news.title') }}</th>
-                        @if (Sentry::check() and (Sentry::getUser()->hasAccess('news.edit') or Sentry::getUser()->hasAccess('news.remove')))
+                        @if (Sentry::check() and Sentry::getUser()->hasAnyAccess(['news.delete', 'news.edit']))
                             <th>{{ trans('news.admin') }}</th>
                         @endif
                     </tr>
