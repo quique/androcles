@@ -35,14 +35,16 @@
                             <td>{{ strftime('%d-%m-%Y', strtotime($item->created_at)) }}</td>
                             <td>{{ HTML::linkRoute('news.show', $item->title, [$item->id]) }}</td>
 
-                            <td>
-                                @if (Sentry::check() and Sentry::getUser()->hasAccess('news.remove'))
+                            @if (Sentry::check())
+                                <td>
+                                @if (Sentry::getUser()->hasAccess('news.remove'))
                                     <a href="{{ action('NewsController@delete', $item->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
                                 @endif
-                                @if (Sentry::check() and Sentry::getUser()->hasAccess('news.edit'))
+                                @if (Sentry::getUser()->hasAccess('news.edit'))
                                     <a href="{{ action('NewsController@edit', $item->id) }}" class="btn btn-warning">{{ trans('news.edit') }}</a>
                                 @endif
-                            </td>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
