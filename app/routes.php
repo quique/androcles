@@ -20,19 +20,18 @@ Route::group(array('prefix' => 'animals'), function()
 {
     // Bind route parameters.
     Route::pattern('status', '[a-z\-]+');
-    //Route::pattern('species', '[0-9]+');
     Route::pattern('species', '[a-z\-]+');
     Route::model('animal','Animal');
     // Show pages
-    Route::get('/', ['as'=>'animals.index', 'uses' => 'AnimalsController@read']);
-    Route::get('/create', ['as'=>'animals.create', 'before'=>'hasAccess', 'uses' => 'AnimalsController@create']);
-    Route::get('/{status}', 'AnimalsController@readStatus');
-    Route::get('/{status}/{species}', 'AnimalsController@readStatusSpecies');
-    Route::get('/{animal}', ['as'=>'animals.show', 'uses' => 'AnimalsController@readSingle']);
-    Route::get('/{animal}/update', ['as'=>'animals.edit', 'before'=>'hasAccess', 'uses' => 'AnimalsController@update']);
-    Route::get('{animal}/delete', ['as'=>'animals.remove', 'before'=>'hasAccess', 'uses' => 'AnimalsController@delete']);
+    Route::get('/',                 ['as'=>'animals.index',                              'uses' => 'AnimalsController@read']);
+    Route::get('/create',           ['as'=>'animals.create', 'before'=>'hasAccess',      'uses' => 'AnimalsController@create']);
+    Route::get('/{status}',         ['as'=>'animals.status',                             'uses' => 'AnimalsController@readStatus']);
+    Route::get('/{status}/{species}', ['as'=>'animals.status.species',                   'uses' => 'AnimalsController@readStatusSpecies']);
+    Route::get('/{animal}',         ['as'=>'animals.show',                               'uses' => 'AnimalsController@readSingle']);
+    Route::get('/{animal}/update',  ['as'=>'animals.edit',   'before'=>'hasAccess',      'uses' => 'AnimalsController@update']);
+    Route::get('{animal}/delete',   ['as'=>'animals.remove', 'before'=>'hasAccess',      'uses' => 'AnimalsController@delete']);
     // Handle form submissions.
-    Route::post('/create', ['as'=>'animals.store', 'before'=>'csrf|hasAccess', 'uses' => 'AnimalsController@saveCreate']);
+    Route::post('/create',          ['as'=>'animals.store',  'before'=>'csrf|hasAccess', 'uses' => 'AnimalsController@saveCreate']);
     Route::post('/{animal}/update', ['as'=>'animals.update', 'before'=>'csrf|hasAccess', 'uses' => 'AnimalsController@saveUpdate']);
     Route::post('/{animal}/delete', ['as'=>'animals.delete', 'before'=>'csrf|hasAccess', 'uses' => 'AnimalsController@doDelete']);
 });
@@ -42,15 +41,15 @@ Route::group(array('prefix' => 'news'), function()
     // Bind route parameters.
     Route::model('news', 'News');
     // Show pages.
-    Route::get('/', ['as'=>'news.index', 'uses'=>'NewsController@index']);
-    Route::get('/create', ['as'=>'news.create', 'before'=>'hasAccess', 'uses' =>'NewsController@create']);
-    Route::get('/{news}', ['as'=>'news.show', 'uses' => 'NewsController@show']);
-    Route::get('/edit/{news}', ['as'=>'news.edit', 'before'=>'hasAccess', 'uses' => 'NewsController@edit']);
-    Route::get('/delete/{news}', ['as'=>'news.remove', 'before'=>'hasAccess', 'uses' => 'NewsController@delete']);
+    Route::get('/',                 ['as'=>'news.index',                              'uses' => 'NewsController@index']);
+    Route::get('/create',           ['as'=>'news.create', 'before'=>'hasAccess',      'uses' => 'NewsController@create']);
+    Route::get('/{news}',           ['as'=>'news.show',                               'uses' => 'NewsController@show']);
+    Route::get('/edit/{news}',      ['as'=>'news.edit',   'before'=>'hasAccess',      'uses' => 'NewsController@edit']);
+    Route::get('/delete/{news}',    ['as'=>'news.remove', 'before'=>'hasAccess',      'uses' => 'NewsController@delete']);
     // Handle form submissions.
-    Route::post('/create', ['as'=>'news.store', 'before'=>'csrf|hasAccess', 'uses' =>'NewsController@handleCreate']);
-    Route::post('/edit', ['as'=>'news.update', 'before'=>'csrf|hasAccess', 'uses' =>'NewsController@handleEdit']);
-    Route::post('/delete', ['as'=>'news.delete', 'before'=>'csrf|hasAccess', 'uses' =>'NewsController@handleDelete']);
+    Route::post('/create',          ['as'=>'news.store',  'before'=>'csrf|hasAccess', 'uses' => 'NewsController@handleCreate']);
+    Route::post('/edit',            ['as'=>'news.update', 'before'=>'csrf|hasAccess', 'uses' => 'NewsController@handleEdit']);
+    Route::post('/delete',          ['as'=>'news.delete', 'before'=>'csrf|hasAccess', 'uses' => 'NewsController@handleDelete']);
 });
 
 

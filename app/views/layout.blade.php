@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Androcles</a>
+                <a class="navbar-brand" href="{{ URL::route('home') }}">Androcles</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,21 +55,21 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">{{ Lang::get("layout.Up-for-adoption") }}</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/animals/up-for-adoption/dogs">{{ Lang::get("layout.Dogs") }}</a></li>
-                                    <li><a href="/animals/up-for-adoption/cats">{{ Lang::get("layout.Cats") }}</a></li>
-                                    <li><a href="/animals/up-for-adoption/others">{{ Lang::get("layout.Others") }}</a></li>
+                                    <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'dogs']) }}">{{ Lang::get("layout.Dogs") }}</a></li>
+                                    <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'cats']) }}">{{ Lang::get("layout.Cats") }}</a></li>
+                                    <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'others']) }}">{{ Lang::get("layout.Others") }}</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/animals/lost">{{ Lang::get("layout.Lost-found") }}</a></li>
-                            <li><a href="/animals/particular">{{ Lang::get("layout.Particular") }}</a></li>
-                            <li><a href="/animals/happy-endings">{{ Lang::get("layout.Happy-endings") }}</a>
+                            <li><a href="{{ URL::route('animals.status', ['lost']) }}">{{ Lang::get("layout.Lost-found") }}</a></li>
+                            <li><a href="{{ URL::route('animals.status', ['particular']) }}">{{ Lang::get("layout.Particular") }}</a></li>
+                            <li><a href="{{ URL::route('animals.status', ['happy-endings']) }}">{{ Lang::get("layout.Happy-endings") }}</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/animals/happy-endings/dogs">{{ Lang::get("layout.Dogs") }}</a></li>
-                                    <li><a href="/animals/happy-endings/cats">{{ Lang::get("layout.Cats") }}</a></li>
-                                    <li><a href="/animals/happy-endings/others">{{ Lang::get("layout.Others") }}</a></li>
+                                    <li><a href="{{ URL::route('animals.status.species', ['happy-endings', 'dogs']) }}">{{ Lang::get("layout.Dogs") }}</a></li>
+                                    <li><a href="{{ URL::route('animals.status.species', ['happy-endings', 'cats']) }}">{{ Lang::get("layout.Cats") }}</a></li>
+                                    <li><a href="{{ URL::route('animals.status.species', ['happy-endings','others']) }}">{{ Lang::get("layout.Others") }}</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/animals/in-our-heart">{{ Lang::get("layout.In-our-heart") }}</a></li>
+                            <li><a href="{{ URL::route('animals.status', ['in-our-heart']) }}">{{ Lang::get("layout.In-our-heart") }}</a></li>
                             @if (Sentry::check() and Sentry::getUser()->hasAccess('animals.create'))
                                 <li class="divider"></li>
                                 <li><a href="{{ action('AnimalsController@create') }}">{{ Lang::get("layout.Add-animal") }}</a></li>
