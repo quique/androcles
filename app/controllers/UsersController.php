@@ -9,8 +9,9 @@ class UsersController extends BaseController {
      */
     public function __construct()
     {
-        $this->beforeFilter('hasAccess', array('except' => ['getLogin', 'postLogin', 'getLogout']));
+        $this->beforeFilter('hasAccess', array('except' => ['getLogin', 'postLogin', 'getLogout', 'password', 'passwd']));
         $this->beforeFilter('isGuest', ['only' => 'getLogin']);
+        $this->beforeFilter('auth', ['only' => ['password', 'passwd']]);
         $this->beforeFilter('csrf', array('on' => 'post'));
     }
 
@@ -187,6 +188,8 @@ class UsersController extends BaseController {
             return Redirect::route('users.edit', $input['id'])->withErrors($validator)->withInput();
         }
 
+        $editor = Input::has('editor') && Input::get('editor') == "editor";
+
         try {
             // Update the user details
             $id->first_name = $input['first_name'];
@@ -197,6 +200,13 @@ class UsersController extends BaseController {
                     // User information was updated
             } else {
                     // User information was not updated
+            }
+
+            $editorsGroup = Sentry::getGroupProvider()->findByName('Editors');
+            if ($editor && !$id->inGroup($editorsGroup)) {
+                $id->addGroup($editorsGroup);
+            } elseif (!$editor && $id->inGroup($editorsGroup)) {
+                $id->removeGroup($editorsGroup);
             }
         } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
             return Redirect::action('UsersController@edit', $id)->withErrors(['email' => 'users.user-exists'])->withInput();

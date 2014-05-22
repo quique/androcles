@@ -11,6 +11,7 @@ return array(
 
     'add'               => 'Add user',
     'admin'             => "Administration",
+    'administrator'     => "Admin",
     'all'               => 'All users',
     'cancel'            => 'Cancel',
     'clean'             => 'Clean',
@@ -18,7 +19,8 @@ return array(
     'current-password'  => 'Current password',
     'delete'            => 'Remove',
     'edit'              => 'Edit',
-    'edition'           => 'User edition',
+    'edition'           => 'Editor',
+    'editor'            => 'Edition rights',
     'email'             => 'Address',
     'e-mail'            => 'e-mail address',
     'first-name'        => 'First name',

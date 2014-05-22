@@ -11,6 +11,7 @@ return array(
 
     'add'               => 'Añadir un usuario',
     'admin'             => "Administración",
+    'administrator'     => "Admin",
     'all'               => 'Todos los usuarios',
     'cancel'            => 'Cancelar',
     'clean'             => 'Borrar',
@@ -19,6 +20,7 @@ return array(
     'delete'            => 'Eliminar',
     'edit'              => 'Editar',
     'edition'           => 'Edición de un usuario',
+    'editor'            => 'Editor',
     'email'             => 'Dirección',
     'e-mail'            => 'Dirección de correo electrónico',
     'first-name'        => 'Nombre',

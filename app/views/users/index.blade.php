@@ -20,6 +20,8 @@
                     <th>{{ trans('users.first-name') }}</th>
                     <th>{{ trans('users.last-name') }}</th>
                     <th>{{ trans('users.email') }}</th>
+                    <th>{{ trans('users.editor') }}</th>
+                    <th>{{ trans('users.administrator') }}</th>
                     <th>{{ trans('users.admin') }}</th>
                 </tr>
             </thead>
@@ -29,6 +31,16 @@
                         <td>{{ $user->first_name }}</td>
                         <td>{{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>
+                            @if ($user->inGroup(Sentry::getGroupProvider()->findByName('Editors')))
+                                <span class="glyphicon glyphicon-ok"></span>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($user->inGroup(Sentry::getGroupProvider()->findByName('Admin')))
+                                <span class="glyphicon glyphicon-ok"></span>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ action('UsersController@delete', $user->id) }}" class="btn btn-danger">{{ trans('users.delete') }}</a>
                             <a href="{{ action('UsersController@edit', $user->id) }}" class="btn btn-warning">{{ trans('users.edit') }}</a>
