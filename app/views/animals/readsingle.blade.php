@@ -51,12 +51,12 @@
     <p style="margin-top: 20px;">{{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($animal->comments, ENT_QUOTES, 'UTF-8')) }}</p>
 
     @if ($animal->youtube)
-        <iframe width='640' height='480' src="http://www.youtube.com/embed/$animal->youtube" frameborder='0' allowfullscreen></iframe><br /><br />
+        <iframe width='640' height='480' src="http://www.youtube.com/embed/{{{$animal->youtube}}}" allowfullscreen style="border: 0;"></iframe><br /><br />
     @endif
 
     <div class="panel panel-default">
         <div class="panel-heading"><h3>Datos</h3></div>
-        <table class="table" summary="Ficha de {{{ $animal->name }}}">
+        <table class="table">
             <tr><td><strong>Nombre del animal:</strong></td>
                 <td>{{{ $animal->name }}}</td></tr>
 
