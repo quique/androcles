@@ -97,6 +97,21 @@
     </nav>
     </header>
 
+    <div class="container">
+        @if(Session::has('success'))
+            <div class="alert alert-success"><p><span class="glyphicon glyphicon-ok-sign"> &nbsp; </span>{{ trans(Session::get('success')) }}</p></div>
+        @endif
+        @if(Session::has('info'))
+            <div class="alert alert-info"><p><span class="glyphicon glyphicon-info-sign"> &nbsp; </span>{{ trans(Session::get('info')) }}</p></div>
+        @endif
+        @if(Session::has('warning'))
+            <div class="alert alert-warning"><p><span class="glyphicon glyphicon-warning-sign"> &nbsp; </span>{{ trans(Session::get('warning')) }}</p></div>
+        @endif
+        @if(Session::has('danger'))
+            <div class="alert alert-danger"><p><span class="glyphicon glyphicon-warning-sign"> &nbsp; </span>{{ trans(Session::get('danger')) }}</p></div>
+        @endif
+    </div>
+
 @yield('content')
 
 </body>

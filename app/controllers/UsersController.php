@@ -234,4 +234,50 @@ class UsersController extends BaseController {
         return Redirect::route('users.index');
     }
 
+
+    /**
+     * Show password change page.
+     */
+    public function password($id)
+    {
+        $user = Sentry::getUser();
+        return View::make('users.password', [
+            'user'  => $user->id,
+            'title' => 'users.password-change'
+        ]);
+    }
+
+    /**
+     * Change the user's password
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function passwd($id)
+    {
+        $user = Sentry::getUser();
+        if ($id->id != $user->id) {
+            return Redirect::route('users.password', $user->id);
+        }
+
+        $input = Input::all();
+        $rules = [
+            'current_password' => 'required',
+            'new_password'     => 'required|confirmed',
+        ];
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return Redirect::route('users.password', $input['id'])->withErrors($validator);
+        }
+
+        if (!$user->checkPassword(Input::get('current_password'))) {
+            return Redirect::route('users.password', $input['id'])->withErrors(['current_password' => 'users.wrong-password']);
+        }
+
+        $user->password = Input::get('new_password');
+        $user->save();
+        Session::flash('success', 'users.password-changed');
+        return Redirect::route('home');
+    }
+
 }
