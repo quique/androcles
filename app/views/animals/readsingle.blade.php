@@ -51,7 +51,27 @@
     <p style="margin-top: 20px;">{{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($animal->comments, ENT_QUOTES, 'UTF-8')) }}</p>
 
     @if ($animal->youtube)
-        <iframe width='640' height='480' src="http://www.youtube.com/embed/{{{$animal->youtube}}}" allowfullscreen style="border: 0;"></iframe><br /><br />
+        <!-- The <iframe> (and video player) will replace this <div> tag. -->
+        <div id="ytplayer"></div><br /><br />
+
+        <script>
+            // Load the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            // Replace the 'ytplayer' element with an <iframe> and
+            // YouTube player after the API code downloads.
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('ytplayer', {
+                    height: '390',
+                    width: '640',
+                    videoId: '{{{$animal->youtube}}}'
+                });
+            }
+        </script>
     @endif
 
     <div class="panel panel-default">
