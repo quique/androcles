@@ -21,7 +21,7 @@ class UsersController extends BaseController {
      */
     public function getLogin()
     {
-        return View::make('users.login')->with('title', "Inicio de sesión");
+        return View::make('users.login')->with('title', "users.log-in");
     }
 
 
