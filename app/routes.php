@@ -74,3 +74,5 @@ Route::group(array('prefix' => 'users'), function()
     Route::post('{user}/passwd',    ['as'=>'users.passwd',  'uses' => 'UsersController@passwd']);
     Route::post('{user}/destroy',   ['as'=>'users.destroy', 'uses' => 'UsersController@destroy']);
 });
+
+Route: Route::controller('password', 'RemindersController');

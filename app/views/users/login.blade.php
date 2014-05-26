@@ -16,11 +16,13 @@
 
         <input type="email" class="form-control" name="email" id="email" placeholder="{{ trans('users.e-mail') }}" required autofocus>
         <input type="password" class="form-control" name="password" id="password" placeholder="{{ trans('users.password') }}" required>
-        <label class="checkbox">
-            <input type="checkbox" name="remember_me" id="remember_me" value="remember_me"> {{ trans('users.remember-me') }}
-        </label>
+        <p>{{ HTML::linkAction('RemindersController@getRemind', trans("users.forgotten-pass")) }}</p>
+        <!-- <label class="checkbox">
+            <input type="checkbox" name="remember_me" id="remember_me" value="remember_me"> {{-- trans('users.remember-me') --}}
+        </label> -->
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">{{ trans('users.log-in') }}</button>
+
     </form>
 
 </div> <!-- /container -->
