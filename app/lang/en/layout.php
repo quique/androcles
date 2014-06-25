@@ -18,6 +18,7 @@ return array(
     'log-in'        => 'Log in',
     'logout'        => 'Log out',
     'Lost-found'    => 'Lost and found',
+    'motto'         => 'A CMS for Animal Shelters',
     'News'          => 'News',
     'Others'        => 'Others',
     'Particular'    => 'Particular',
