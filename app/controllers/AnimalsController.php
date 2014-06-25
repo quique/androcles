@@ -103,6 +103,7 @@ class AnimalsController extends BaseController
         // return View::make('animals.read')->with('animals', $animals);
     }
 
+
     public function readStatus($status)
     {
         if ($status == "up-for-adoption") {
@@ -135,6 +136,7 @@ class AnimalsController extends BaseController
             'title'   => $title]);
     }
 
+
     public function readSingle(Animal $animal)
     {
         $pics = $animal->animal_pics()->get();
@@ -157,7 +159,7 @@ class AnimalsController extends BaseController
             $animals = Animal::where('species_id', '>', 2);
             $species_name = "Otros";
         }
-        
+
         if ($status == "up-for-adoption") {
             $animals = $animals->where('status_id', '<=', 10)->get();
             $title = "$species_name en adopción";
@@ -252,7 +254,7 @@ class AnimalsController extends BaseController
         $animal->privatecomments = $input['privatecomments'];
         $animal->save();
 
-        
+
         $images_dir = public_path() ."/images/animalpics/";
         $thumbnails_dir  = public_path() ."/images/animalthumbs/";
 
@@ -310,7 +312,7 @@ class AnimalsController extends BaseController
             unlink($thumbnails_dir . $pic->filename);
             $pic->delete();
         }
-        
+
         $animal->delete();
         return Redirect::action('AnimalsController@read');
     }
