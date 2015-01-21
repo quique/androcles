@@ -8,7 +8,11 @@
     </div>
 </div>
 
-@if (count($pics) > 0)
+@if (count($pics) == 1)
+    <div class="jumbotron text-center">
+        <img src="{{ asset("images/animalpics/" . $pics->first()->filename) }}" alt="Foto de {{{ $animal->name }}}">
+    </div>
+@elseif (count($pics) > 0)
 <div id="myCarousel" class="container carousel slide">
     <!-- Indicators -->
     <ol class="carousel-indicators">

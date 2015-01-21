@@ -10,7 +10,11 @@
     </section>
 
     <div class="container">
-        @if (count($pics) > 0)
+        @if (count($pics) == 1)
+            <div class="jumbotron text-center">
+                <img src="{{ asset("images/newspics/" . $pics->first()->filename) }}" alt="{{ trans('news.image') }}">
+            </div>
+        @elseif (count($pics) > 0)
         <div id="myCarousel" class="carousel slide">
             <!-- Indicators -->
             <ol class="carousel-indicators">
