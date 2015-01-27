@@ -15,6 +15,7 @@ return array(
     'Dogs'          => 'Perros',
     'Happy-endings' => 'Finales felices',
     'In-our-heart'  => 'En nuestro corazón',
+    'Links'         => 'Enlaces',
     'log-in'        => 'Iniciar sesión',
     'logout'        => 'Cerrar sesión',
     'Lost-found'    => 'Perdidos y encontrados',

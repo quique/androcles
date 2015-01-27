@@ -206,7 +206,7 @@ class NewsController extends BaseController
             }
         }
 
-        // Resample
+        // Resample - This requires installing and enabling the php-gd module.
         $image_p = imagecreatetruecolor($new_width, $new_height);
         $image = imagecreatefromjpeg($input);  // TODO: Add support for other file formats?
         imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);

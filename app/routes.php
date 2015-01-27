@@ -75,4 +75,22 @@ Route::group(array('prefix' => 'users'), function()
     Route::post('{user}/destroy',   ['as'=>'users.destroy', 'uses' => 'UsersController@destroy']);
 });
 
+
+Route::group(array('prefix' => 'links'), function()
+{
+    // Bind route parameters.
+    Route::model('link', 'Link');
+    // Show pages.  csrf|hasAccess tests are in the Controller constructor.
+    Route::get('/',                 ['as'=>'links.index',   'uses'=>'LinksController@index']);
+    Route::get('/create',           ['as'=>'links.create',  'uses'=>'LinksController@create']);
+    Route::get('/{link}',           ['as'=>'links.show',    'uses'=>'LinksController@show']);
+    Route::get('/{link}/edit',      ['as'=>'links.edit',    'uses'=>'LinksController@edit']);
+    Route::get('/{link}/delete',    ['as'=>'links.delete',  'uses'=>'LinksController@delete']);
+    // Handle form submissions.
+    Route::post('/store',           ['as'=>'links.store',   'uses'=>'LinksController@store']);
+    Route::post('/{link}/update',   ['as'=>'links.update',  'uses'=>'LinksController@update']);
+    Route::post('/{link}/destroy',  ['as'=>'links.destroy', 'uses'=>'LinksController@destroy']);
+});
+
+
 Route: Route::controller('password', 'RemindersController');

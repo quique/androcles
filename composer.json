@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"caouecs/laravel4-lang": "dev-master",
-		"cartalyst/sentry": "2.1.*"
+		"cartalyst/sentry": "2.1.*",
+        "magniloquent/magniloquent": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -77,6 +77,7 @@
                         </ul>
                     </li>
                     <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
+                    <li><a href="{{ action('LinksController@index') }}">{{ Lang::get("layout.Links") }}</a></li>
                     @if (Sentry::check())
                         <li><a href="#">{{ trans("layout.user") }}</a>
                             <ul class="dropdown-menu">
