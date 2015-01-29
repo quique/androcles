@@ -3,8 +3,9 @@
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
+	"type": "project",
 	"require": {
-		"laravel/framework": "4.1.*",
+		"laravel/framework": "4.2.*",
 		"caouecs/laravel4-lang": "dev-master",
 		"cartalyst/sentry": "2.1.*",
         "magniloquent/magniloquent": "dev-master"
