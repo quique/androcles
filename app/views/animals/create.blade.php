@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="page-header">
-        <h2>{{ $title }}</h2>
+        <h2>{{ trans($title) }}</h2>
     </div>
 
     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
@@ -77,7 +77,7 @@
                 <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="{{ trans('animals.press') }}" value="{{ Input::old('dateofbirth') }}">
                 <script>
                     $(function() {
-                        $.datepicker.setDefaults($.datepicker.regional["es"]);
+                        $.datepicker.setDefaults($.datepicker.regional["es"]); // FIXME
                         $( "#dateofbirth" ).datepicker({
                             changeMonth: true,
                             changeYear: true,
@@ -141,44 +141,44 @@
         </div>
 
         <div class="form-group">
-            <label for="youtube" class="col-sm-2 control-label">ID de vídeo en Youtube:</label>
+            <label for="youtube" class="col-sm-2 control-label">{{ trans('animals.youtube_id') }}:</label>
 
             <div class="col-sm-2">
                 <input type="text" class="form-control" name="youtube" id="youtube" placeholder="q0WBwq-qnb8" value="{{{ Input::old('youtube') }}}">
             </div><br style="clear: both">
-            <p class="help-block col-sm-offset-2">&nbsp;Ej: si el vídeo está en http://www.youtube.com/watch?v=q0WBwq-qnb8, introduce q0WBwq-qnb8.</p>
+            <p class="help-block col-sm-offset-2">&nbsp;{{ trans('animals.youtube_ex') }}</p>
         </div>
 
         <div class="form-group">
-            <label for="photo" class="col-sm-2 control-label">Foto:</label>
+            <label for="photo" class="col-sm-2 control-label">{{ trans('animals.photo') }}:</label>
             <div class="col-sm-4">
                 <!-- input type="hidden" name="MAX_FILE_SIZE" value="1572864" --> <!-- 1.5 MiB should be more than enough -->
                 <input type="file" name="photo" id="photo" />
-                <p class="help-block">Formato: JPEG.</p>
+                <p class="help-block">{{ trans('animals.format') }}.</p>
             </div>
         </div>
 
 
-        <h2>Información interna</h2>
+        <h2>{{ trans('animals.private') }}</h2>
 
         <div class="form-group">
-            <label for="provenance" class="col-sm-2 control-label">Lugar de procedencia:</label>
+            <label for="provenance" class="col-sm-2 control-label">{{ trans('animals.provenance') }}:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="provenance" id="provenance" placeholder="Origen del animal" value="{{{ Input::old('provenance') }}}">
+                <input type="text" class="form-control" name="provenance" id="provenance" placeholder="{{ trans('animals.provenance2') }}" value="{{{ Input::old('provenance') }}}">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="deliverer" class="col-sm-2 control-label">Persona y motivo de entrega:</label>
+            <label for="deliverer" class="col-sm-2 control-label">{{ trans('animals.deliverer') }}:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="deliverer" id="deliverer" placeholder="Circunstancias de la entrega (persona, razón, etc)">{{{ Input::old('deliverer') }}}</textarea>
+                <textarea class="form-control" rows="4" name="deliverer" id="deliverer" placeholder="{{ trans('animals.deliverer2') }}">{{{ Input::old('deliverer') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="dateofexit" class="col-sm-2 control-label">Fecha de salida:</label>
+            <label for="dateofexit" class="col-sm-2 control-label">{{ trans('animals.dateofexit') }}:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="dateofexit" id="dateofexit" placeholder="Pulse aquí" value="{{{ Input::old('dateofexit') }}}">
+                <input type="text" class="form-control" name="dateofexit" id="dateofexit" placeholder="{{ trans('animals.press') }}" value="{{{ Input::old('dateofexit') }}}">
                 <script>
                     $(function() {
                         $( "#dateofexit" ).datepicker({
@@ -190,51 +190,51 @@
         </div>
 
         <div class="form-group">
-            <label for="chipcode" class="col-sm-2 control-label">Número de chip:</label>
+            <label for="chipcode" class="col-sm-2 control-label">{{ trans('animals.chipcode') }}:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="chipcode" id="chipcode" placeholder="Número de identificación del animal" value="{{{ Input::old('chipcode') }}}">
+                <input type="text" class="form-control" name="chipcode" id="chipcode" placeholder="{{ trans('animals.chipcode2') }}" value="{{{ Input::old('chipcode') }}}">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="vaccinations" class="col-sm-2 control-label">Vacunas:</label>
+            <label for="vaccinations" class="col-sm-2 control-label">{{ trans('animals.vaccinations') }}:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="vaccinations" id="vaccinations" placeholder="Vacunas recibidas, junto con su fecha">{{{ Input::old('vaccinations') }}}</textarea>
+                <textarea class="form-control" rows="4" name="vaccinations" id="vaccinations" placeholder="{{ trans('animals.vaccinations2') }}">{{{ Input::old('vaccinations') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="diseases" class="col-sm-2 control-label">Enfermedades:</label>
+            <label for="diseases" class="col-sm-2 control-label">{{ trans('animals.diseases') }}:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="diseases" id="diseases" placeholder="Enfermedades o síndromes que sufra">{{{ Input::old('diseases') }}}</textarea>
+                <textarea class="form-control" rows="4" name="diseases" id="diseases" placeholder="{{ trans('animals.diseases2') }}">{{{ Input::old('diseases') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="surgeries" class="col-sm-2 control-label">Operaciones:</label>
+            <label for="surgeries" class="col-sm-2 control-label">{{ trans('animals.surgeries') }}:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="surgeries" id="surgeries" placeholder="Operaciones quirúrgicas a las que se haya sometido (con su fecha)">{{{ Input::old('surgeries') }}}</textarea>
+                <textarea class="form-control" rows="4" name="surgeries" id="surgeries" placeholder="{{ trans('animals.surgeries2') }}">{{{ Input::old('surgeries') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="treatment" class="col-sm-2 control-label">Tratamiento:</label>
+            <label for="treatment" class="col-sm-2 control-label">{{ trans('animals.treatment') }}:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="4" name="treatment" id="treatment" placeholder="Tratamientos médicos que deba seguir">{{{ Input::old('treatment') }}}</textarea>
+                <textarea class="form-control" rows="4" name="treatment" id="treatment" placeholder="{{ trans('animals.treatment2') }}">{{{ Input::old('treatment') }}}</textarea>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="privatecomments" class="col-sm-2 control-label">Observaciones:</label>
+            <label for="privatecomments" class="col-sm-2 control-label">{{ trans('animals.privatecomments') }}:</label>
             <div class="col-sm-7">
-                <textarea class="form-control" rows="8" id="privatecomments" name="privatecomments" placeholder="Cualquier otra información de interés sobre este animal">{{{ Input::old('privatecomments') }}}</textarea>
+                <textarea class="form-control" rows="8" id="privatecomments" name="privatecomments" placeholder="{{ trans('animals.privatecomments2') }}">{{{ Input::old('privatecomments') }}}</textarea>
             </div>
         </div>
 
         <div class="col-sm-offset-2">
-            <a href="{{ URL::previous() }}" class="btn btn-danger">Cancelar</a>
-            <button type="reset" class="btn btn-warning">Borrar</button>
-            <button type="submit" class="btn btn-success">Añadir</button>
+            <a href="{{ URL::previous() }}" class="btn btn-danger">{{ trans('animals.cancel') }}</a>
+            <button type="reset" class="btn btn-warning">{{ trans('animals.clean') }}</button>
+            <button type="submit" class="btn btn-success">{{ trans('animals.add') }}</button>
         </div>
     </form>
 

@@ -3,7 +3,7 @@
 @section('content')
     <section class="header section-padding">
         <div class="container">
-            <div class="header-text">
+            <div class="page-header">
                 <h1>{{ trans($title) }}</h1>
             </div>
         </div>
@@ -12,6 +12,7 @@
     <div class="container">
     <form action="{{ action('NewsController@handleCreate') }}" enctype="multipart/form-data" method="post" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
         <div class="form-group">
             <label for="title">{{ trans('news.title') }}</label>
             <input type="text" class="form-control" name="title" id="title" placeholder="{{ trans('news.news-title') }}" value="{{{ Input::old('title') }}}" />

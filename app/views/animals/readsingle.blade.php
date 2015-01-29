@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="jumbotron text-center">
-    <div class="container">
-        <h2>{{{ $title }}}</h2>
-    </div>
+<div class="container">
+
+<div class="page-header">
+    <h2>{{{ $title }}}</h2>
 </div>
 
 @if (count($pics) == 1)
@@ -13,32 +13,32 @@
         <img src="{{ asset("images/animalpics/" . $pics->first()->filename) }}" alt="Foto de {{{ $animal->name }}}">
     </div>
 @elseif (count($pics) > 0)
-<div id="myCarousel" class="container carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        @for ($i = 0; $i < count($pics); ++$i)
-            <li data-target="#myCarousel" data-slide-to="{{ $i }}" {{ $i == 0 ? 'class="active"' : '' }}></li>
-        @endfor
-    </ol>
+    <div id="myCarousel" class="container carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @for ($i = 0; $i < count($pics); ++$i)
+                <li data-target="#myCarousel" data-slide-to="{{ $i }}" {{ $i == 0 ? 'class="active"' : '' }}></li>
+            @endfor
+        </ol>
 
-    <div class="carousel-inner">
-        @foreach($pics as $pic)
-            <div class="item {{ $pic == $pics->first() ? 'active' : '' }}">
-                <img src="{{ asset("images/animalpics/$pic->filename") }}" class="img-responsive" alt="Foto de {{{ $animal->name }}}">
-            </div>
-        @endforeach
+        <div class="carousel-inner">
+            @foreach($pics as $pic)
+                <div class="item {{ $pic == $pics->first() ? 'active' : '' }}">
+                    <img src="{{ asset("images/animalpics/$pic->filename") }}" class="img-responsive" alt="Foto de {{{ $animal->name }}}">
+                </div>
+            @endforeach
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
     </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-</div>
-<!-- /.carousel -->
-<br style="clear: both;">
+    <!-- /.carousel -->
+    <br style="clear: both;">
 @endif
 
 <div class="container col-md-offset-3 col-md-6">
@@ -119,14 +119,16 @@
         </table>
     </div>
 
-
-    <div>
-        @if (Sentry::check() and Sentry::getUser()->hasAccess('animals.remove'))
-            <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">Borrar</a>
-        @endif
-        @if (Sentry::check() and Sentry::getUser()->hasAccess('animals.edit'))
-            <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">Editar</a>
-        @endif
-    </div><br><br>
+    @if (Sentry::check())
+        <div style="margin-bottom: 20px;">
+            @if (Sentry::getUser()->hasAccess('animals.remove'))
+                <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">{{ trans('animals.remove') }}</a>
+            @endif
+            @if (Sentry::getUser()->hasAccess('animals.edit'))
+                <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">{{ trans('animals.edit') }}</a>
+            @endif
+        </div>
+    @endif
+</div>
 </div>
 @stop

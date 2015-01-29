@@ -10,7 +10,7 @@ class AnimalsController extends BaseController
         $coats = ['' => 'Seleccione el pelaje'] + Coat::lists('description', 'id');
         $statuses = ['' => 'Seleccione el estado'] + Status::lists('name', 'id');
         return View::make('animals.create', [
-            'title'    => "Añadir un nuevo animal",
+            'title'    => "animals.Add",
             'species'  => $species,
             'sexes'    => $sexes,
             'colors'   => $colors,
@@ -98,7 +98,7 @@ class AnimalsController extends BaseController
 
         return View::make('animals.read', [
             'animals' => $animals,
-            'title'   => "Todos los animales"]);
+            'title'   => "animals.all"]);
         // return View::make('animals.read', compact('animals'));
         // return View::make('animals.read')->with('animals', $animals);
     }
@@ -108,19 +108,19 @@ class AnimalsController extends BaseController
     {
         if ($status == "up-for-adoption") {
             $animals = Animal::where('status_id', '<=', 10)->get();
-            $title = "Animales en adopción";
+            $title = "animals.Up-for-adoption";
         } elseif ($status == 'lost') {
             $animals = Animal::whereIn('status_id', [13, 25, 30])->get();
-            $title = "Animales perdidos y encontrados";
+            $title = "animals.Lost";
         } elseif ($status == 'particular') {
             $animals = Animal::whereStatusId(14)->get();
-            $title = "Animales de particulares";
+            $title = "animals.Particular";
         } elseif ($status == 'happy-endings') {
             $animals = Animal::whereBetween('status_id', [15, 20])->get();
-            $title = "Finales felices";
+            $title = "animals.Happy-endings";
         } elseif ($status == 'in-our-heart') {
             $animals = Animal::whereBetween('status_id', [35, 40])->get();
-            $title = "Siempre en nuestro corazón";
+            $title = "animals.In-our-heart";
         } else {
             return Redirect::action('AnimalsController@readStatus', "up-for-adoption");
         }

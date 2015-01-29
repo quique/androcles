@@ -3,7 +3,7 @@
 @section('content')
     <section class="header section-padding">
         <div class="container">
-            <div class="header-text">
+            <div class="page-header">
                 <h1>{{{ $title }}}</h1>
             </div>
         </div>
@@ -42,18 +42,31 @@
         <!-- /.carousel -->
         @endif
 
-        {{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($news->body, ENT_QUOTES, 'UTF-8')) }}
+        <div class="container col-md-offset-2 col-md-8">
+            <div id="fb-root"></div>
+            <script type="text/javascript">(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-like" data-href="{{ URL::current() }}" data-send="true" data-width="450" data-show-faces="true"></div><br />
 
-        <br><br>
-        @if (Sentry::check())
-            <div>
-                @if (Sentry::getUser()->hasAccess('news.remove'))
-                    <a href="{{ action('NewsController@delete', $news->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
-                @endif
-                @if (Sentry::getUser()->hasAccess('news.edit'))
-                    <a href="{{ action('NewsController@edit', $news->id) }}" class="btn btn-warning">{{ trans('news.edit') }}</a>
-                @endif
-            </div>
-        @endif
+            <p style="margin-top: 20px; margin-bottom: 15px;">
+                {{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($news->body, ENT_QUOTES, 'UTF-8')) }}
+            </p>
+
+            @if (Sentry::check())
+                <div style="margin-bottom: 20px;">
+                    @if (Sentry::getUser()->hasAccess('news.remove'))
+                        <a href="{{ action('NewsController@delete', $news->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
+                    @endif
+                    @if (Sentry::getUser()->hasAccess('news.edit'))
+                        <a href="{{ action('NewsController@edit', $news->id) }}" class="btn btn-warning">{{ trans('news.edit') }}</a>
+                    @endif
+                </div>
+            @endif
+        </div>
     </div>
 @stop

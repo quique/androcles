@@ -1,15 +1,12 @@
 @extends('layout')
 
 @section('content')
-    <section class="header section-padding">
-        <div class="container">
-            <div class="header-text">
-                <h1>{{ trans($title) }}</h1>
-            </div>
-        </div>
-    </section>
 
     <div class="container">
+        <div class="page-header">
+            <h1>{{ trans($title) }}</h1>
+        </div>
+
         <p>{{{ trans('links.sure', ['name' => $link->name]) }}}</p>
 
         <form action="{{ action('LinksController@destroy', $link->id) }}" method="post" role="form">

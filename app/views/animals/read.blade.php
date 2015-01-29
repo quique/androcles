@@ -3,7 +3,7 @@
 
 <div class="container">
     <section class="section-padding">
-        <div class="jumbotron text-center">
+        <div class="page-header">
             <h2>{{ $title }}</h2>
         </div>
 

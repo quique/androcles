@@ -19,7 +19,7 @@ return array(
     'current-password'  => 'Current password',
     'delete'            => 'Remove',
     'edit'              => 'Edit',
-    'edition'           => 'Editor',
+    'edition'           => 'User Edition',
     'editor'            => 'Edition rights',
     'email'             => 'Address',
     'e-mail'            => 'e-mail address',

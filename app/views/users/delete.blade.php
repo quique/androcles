@@ -3,7 +3,7 @@
 @section('content')
     <section class="header section-padding">
         <div class="container">
-            <div class="header-text">
+            <div class="page-header">
                 <h1>{{ trans($title) }}</h1>
             </div>
         </div>
