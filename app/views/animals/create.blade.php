@@ -77,7 +77,7 @@
                 <input type="text" class="form-control" name="dateofbirth" id="dateofbirth" placeholder="{{ trans('animals.press') }}" value="{{ Input::old('dateofbirth') }}">
                 <script>
                     $(function() {
-                        $.datepicker.setDefaults($.datepicker.regional["es"]); // FIXME
+                        $.datepicker.setDefaults($.datepicker.regional["{{ Config::get('app.locale', 'en') }}"]);
                         $( "#dateofbirth" ).datepicker({
                             changeMonth: true,
                             changeYear: true,

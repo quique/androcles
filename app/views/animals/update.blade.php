@@ -64,7 +64,7 @@
                 {{ Form::text('dateofbirth', $animal->dateofbirth, ['class' => 'form-control', 'placeholder' => 'Pulse aquí']) }}
                 <script>
                     $(function() {
-                        $.datepicker.setDefaults($.datepicker.regional["es"]);
+                        $.datepicker.setDefaults($.datepicker.regional["{{ Config::get('app.locale', 'en') }}"]);
                         $( "#dateofbirth" ).datepicker({
                             changeMonth: true,
                             changeYear: true,
