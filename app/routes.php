@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', ['as'=>'home', function()
-{
-    return View::make('hello')->with('title', "Androcles - Un CMS para protectoras de animales");
-}]);
+Route::get('/',     ['as'=>'home',      'uses' => 'HomeController@index']);
+
 
 Route::group(array('prefix' => 'animals'), function()
 {
@@ -35,6 +33,7 @@ Route::group(array('prefix' => 'animals'), function()
     Route::post('/{animal}/update', ['as'=>'animals.update', 'before'=>'csrf|hasAccess', 'uses' => 'AnimalsController@saveUpdate']);
     Route::post('/{animal}/delete', ['as'=>'animals.delete', 'before'=>'csrf|hasAccess', 'uses' => 'AnimalsController@doDelete']);
 });
+
 
 Route::group(array('prefix' => 'news'), function()
 {

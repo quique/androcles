@@ -20,4 +20,40 @@ class HomeController extends BaseController {
 		return View::make('hello');
 	}
 
+    /**
+     * Show a listing of news, latest arrivals and latest adoptions.
+     */
+    public function index()
+    {
+        // News
+        $news = News::orderBy('created_at', 'DESC')->take(3)->get();
+        foreach ($news as $item)
+            $item['pic'] = $item->pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
+
+        // Latest arrivals
+        $arrivals = Animal::where('status_id', '<=', 10)->orderBy('id', 'DESC')->take(3)->get();
+        foreach ($arrivals as $animal) {
+            $animal['pic'] = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
+            if (!$animal['pic'])
+                $animal['pic'] = "nopic.jpg";
+        }
+
+        // Latest adoptions
+        $adoptions = Animal::whereBetween('status_id', [15, 20])->orderBy('dateofexit', 'DESC')->take(3)->get();
+        foreach ($adoptions as $animal) {
+            $animal['pic'] = $animal->animal_pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
+            if (!$animal['pic'])
+                $animal['pic'] = "nopic.jpg";
+        }
+
+        return View::make('hello', [
+            'news'      => $news,
+            'arrivals'  => $arrivals,
+            'adoptions' => $adoptions,
+            'shelter'   => Config::get('custom.shelter'),
+            'motto'     => Config::get('custom.motto'),
+            'title'     => Config::get('custom.shelter') ." - ". Config::get('custom.motto'),
+        ]);
+    }
+
 }

@@ -1,22 +1,95 @@
 @extends('layout')
 
 @section('content')
-
-<section class="header section-padding">
-    <div class="background">&nbsp;</div>
-    <div class="container">
-        <div class="header-text">
-            <h1>Androcles <small>{{ trans('layout.motto') }}</small></h1>
-        </div>
-    </div>
-</section>
-
-<div class="container">
-    <section class="section-padding">
-        <div class="jumbotron text-center">
-            <img src="images/androcles_logo.jpg" alt="Logo">
+    <section class="header section-padding">
+        <div class="container">
+            <div class="page-header">
+                <h1>{{ $shelter }} <small>{{ $motto }}</small></h1>
+            </div>
         </div>
     </section>
-</div>
 
+    <div class="container">
+        @if (!$news->isEmpty())
+            <div class="page-header">
+                <h2>{{ trans('home.news') }}</h2>
+            </div>
+            @foreach($news as $piece)
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <a href={{ action('NewsController@show', $piece->id) }}>
+                            <img src="{{ asset("/images/newsthumbs/".$piece->pic) }}"
+                            alt="{{ trans('home.image') }}"></a>
+                        <div class="caption">
+                            <h3><a href={{ action('NewsController@show', $piece->id) }}>{{{ $piece->title }}}</a></h3>
+                            <p>{{{ $piece->body }}}</p>
+                        </div>
+                    </div>
+                    <p class="thumbfooter"><a href={{ action('NewsController@show', $piece->id) }}>Sigue leyendo</a></p>
+                </div>
+            @endforeach
+        @endif
+        <br style="clear: both;">
+
+
+        <div class="page-header">
+            <h2>{{ trans('home.arrivals') }}</h2>
+        </div>
+
+        @if (!$arrivals->isEmpty())
+            @foreach($arrivals as $animal)
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <a href={{ action('AnimalsController@readSingle', $animal->id) }}>
+                            <img src="{{ asset("/images/animalthumbs/".$animal->pic) }}"
+                            alt="Foto de {{{ $animal->name }}}"></a>
+                        <div class="caption">
+                            <p class="pull-right"><span style="font-size: 32px;">
+                                @if ($animal->sex_id == 1)
+                                    &#9794;
+                                @elseif ($animal->sex_id == 3)
+                                    &#9792;
+                                @endif
+                            </span></p>
+                            <h3><a href={{ action('AnimalsController@readSingle', $animal->id) }}>{{{ $animal->name }}}</a></h3>
+                            <p>{{{ $animal->comments }}}</p>
+                        </div>
+                    </div>
+                    <p class="thumbfooter"><a href={{ action('AnimalsController@readSingle', $animal->id) }}>Sigue leyendo</a></p>
+                </div>
+            @endforeach
+        @endif
+        <br style="clear: both;">
+
+
+        <div class="page-header">
+            <h2>{{ trans('home.adoptions') }}</h2>
+        </div>
+
+        @if (!$adoptions->isEmpty())
+            @foreach($adoptions as $animal)
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <a href={{ action('AnimalsController@readSingle', $animal->id) }}>
+                            <img src="{{ asset("/images/animalthumbs/".$animal->pic) }}"
+                            alt="Foto de {{{ $animal->name }}}"></a>
+                        <div class="caption">
+                            <p class="pull-right"><span style="font-size: 32px;">
+                                @if ($animal->sex_id == 1)
+                                    &#9794;
+                                @elseif ($animal->sex_id == 3)
+                                    &#9792;
+                                @endif
+                            </span></p>
+                            <h3><a href={{ action('AnimalsController@readSingle', $animal->id) }}>{{{ $animal->name }}}</a></h3>
+                            <p>{{{ $animal->comments }}}</p>
+                        </div>
+                    </div>
+                    <p class="thumbfooter"><a href={{ action('AnimalsController@readSingle', $animal->id) }}>Sigue leyendo</a></p>
+                </div>
+            @endforeach
+        @endif
+        <br style="clear: both;">
+
+    </div>
 @stop
