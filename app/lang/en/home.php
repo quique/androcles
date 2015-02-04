@@ -11,5 +11,7 @@ return array(
 
     'adoptions'         => 'Latest Adoptions',
     'arrivals'          => "Latest Arrivals",
+    'image'             => "Photo",
+    'more'              => "Read further",
     'news'              => "Latest News",
 );

@@ -17,15 +17,15 @@
             @foreach($news as $piece)
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
-                        <a href={{ action('NewsController@show', $piece->id) }}>
+                        <a href="{{ action('NewsController@show', $piece->id) }}">
                             <img src="{{ asset("/images/newsthumbs/".$piece->pic) }}"
                             alt="{{ trans('home.image') }}"></a>
                         <div class="caption">
-                            <h3><a href={{ action('NewsController@show', $piece->id) }}>{{{ $piece->title }}}</a></h3>
+                            <h3><a href="{{ action('NewsController@show', $piece->id) }}">{{{ $piece->title }}}</a></h3>
                             <p>{{{ $piece->body }}}</p>
                         </div>
                     </div>
-                    <p class="thumbfooter"><a href={{ action('NewsController@show', $piece->id) }}>Sigue leyendo</a></p>
+                    <p class="thumbfooter"><a href="{{ action('NewsController@show', $piece->id) }}">{{ trans('home.more') }}</a></p>
                 </div>
             @endforeach
         @endif
@@ -40,7 +40,7 @@
             @foreach($arrivals as $animal)
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
-                        <a href={{ action('AnimalsController@readSingle', $animal->id) }}>
+                        <a href="{{ action('AnimalsController@readSingle', $animal->id) }}">
                             <img src="{{ asset("/images/animalthumbs/".$animal->pic) }}"
                             alt="Foto de {{{ $animal->name }}}"></a>
                         <div class="caption">
@@ -51,11 +51,11 @@
                                     &#9792;
                                 @endif
                             </span></p>
-                            <h3><a href={{ action('AnimalsController@readSingle', $animal->id) }}>{{{ $animal->name }}}</a></h3>
+                            <h3><a href="{{ action('AnimalsController@readSingle', $animal->id) }}">{{{ $animal->name }}}</a></h3>
                             <p>{{{ $animal->comments }}}</p>
                         </div>
                     </div>
-                    <p class="thumbfooter"><a href={{ action('AnimalsController@readSingle', $animal->id) }}>Sigue leyendo</a></p>
+                    <p class="thumbfooter"><a href="{{ action('AnimalsController@readSingle', $animal->id) }}">{{ trans('home.more') }}</a></p>
                 </div>
             @endforeach
         @endif
@@ -70,7 +70,7 @@
             @foreach($adoptions as $animal)
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
-                        <a href={{ action('AnimalsController@readSingle', $animal->id) }}>
+                        <a href="{{ action('AnimalsController@readSingle', $animal->id) }}">
                             <img src="{{ asset("/images/animalthumbs/".$animal->pic) }}"
                             alt="Foto de {{{ $animal->name }}}"></a>
                         <div class="caption">
@@ -81,11 +81,11 @@
                                     &#9792;
                                 @endif
                             </span></p>
-                            <h3><a href={{ action('AnimalsController@readSingle', $animal->id) }}>{{{ $animal->name }}}</a></h3>
+                            <h3><a href="{{ action('AnimalsController@readSingle', $animal->id) }}">{{{ $animal->name }}}</a></h3>
                             <p>{{{ $animal->comments }}}</p>
                         </div>
                     </div>
-                    <p class="thumbfooter"><a href={{ action('AnimalsController@readSingle', $animal->id) }}>Sigue leyendo</a></p>
+                    <p class="thumbfooter"><a href="{{ action('AnimalsController@readSingle', $animal->id) }}">{{ trans('home.more') }}</a></p>
                 </div>
             @endforeach
         @endif
