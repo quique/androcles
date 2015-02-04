@@ -19,7 +19,6 @@ return array(
     'log-in'        => 'Iniciar sesión',
     'logout'        => 'Cerrar sesión',
     'Lost-found'    => 'Perdidos y encontrados',
-    'motto'         => 'Un CMS para protectoras de animales',
     'News'          => 'Noticias',
     'Others'        => 'Otros',
     'Particular'    => 'De particulares',

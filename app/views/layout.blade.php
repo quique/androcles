@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ URL::route('home') }}">Androcles</a>
+                <a class="navbar-brand" href="{{ URL::route('home') }}">{{ Config::get('custom.shelter') }}</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
