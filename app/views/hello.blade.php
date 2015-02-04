@@ -14,7 +14,11 @@
             <div class="page-header">
                 <h2>{{ trans('home.news') }}</h2>
             </div>
+
             @foreach($news as $piece)
+                @if (!$piece->pic)
+                    <!-- {{ $piece->pic = 'nopic.jpg' }} -->
+                @endif
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         <a href="{{ action('NewsController@show', $piece->id) }}">
@@ -32,11 +36,11 @@
         <br style="clear: both;">
 
 
-        <div class="page-header">
-            <h2>{{ trans('home.arrivals') }}</h2>
-        </div>
-
         @if (!$arrivals->isEmpty())
+            <div class="page-header">
+                <h2>{{ trans('home.arrivals') }}</h2>
+            </div>
+
             @foreach($arrivals as $animal)
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
@@ -62,11 +66,11 @@
         <br style="clear: both;">
 
 
-        <div class="page-header">
-            <h2>{{ trans('home.adoptions') }}</h2>
-        </div>
-
         @if (!$adoptions->isEmpty())
+            <div class="page-header">
+                <h2>{{ trans('home.adoptions') }}</h2>
+            </div>
+
             @foreach($adoptions as $animal)
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
