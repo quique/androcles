@@ -11,6 +11,9 @@
 |
 */
 
+// See http://laravel.com/docs/routing
+
+
 Route::get('/',     ['as'=>'home',      'uses' => 'HomeController@index']);
 
 
@@ -93,3 +96,20 @@ Route::group(array('prefix' => 'links'), function()
 
 
 Route: Route::controller('password', 'RemindersController');
+
+
+Route::group(array('prefix' => 'volunteers'), function()
+{
+    // Bind route parameters.
+    Route::model('volunteer', 'Volunteer');
+    // Show pages.  csrf|auth checks are in the constructor in VolunteersController.
+    Route::get('/',                     ['as'=>'volunteers.index',   'uses'=>'VolunteersController@index']);
+//  Route::get('/create',               ['as'=>'volunteers.create',  'uses'=>'VolunteersController@create']);
+    Route::get('/{volunteer}',          ['as'=>'volunteers.show',    'uses'=>'VolunteersController@show']);
+    Route::get('/{volunteer}/edit',     ['as'=>'volunteers.edit',    'uses'=>'VolunteersController@edit']);
+//  Route::get('/{volunteer}/delete',   ['as'=>'volunteers.delete',  'uses'=>'VolunteersController@delete']);
+    // Handle form submissions.
+//  Route::post('/store',               ['as'=>'volunteers.store',   'uses'=>'VolunteersController@store']);
+    Route::post('/{volunteer}/update',  ['as'=>'volunteers.update',  'uses'=>'VolunteersController@update']);
+//  Route::post('/{volunteer}/destroy', ['as'=>'volunteers.destroy', 'uses'=>'VolunteersController@destroy']);
+});

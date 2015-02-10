@@ -27,5 +27,7 @@ return array(
     'Up-for-adoption' => 'En adopción',
     'user'          => 'Usuario',
     'user-index'    => 'Lista de usuarios',
+    'Volunteers'    => 'Voluntarios',
+    'volunteer-edition' => 'Editar el perfil de voluntario',
     'create-user'   => 'Crear usuario',
 );

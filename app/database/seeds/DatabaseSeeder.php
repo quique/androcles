@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('StatusTableSeeder');
 
         $this->call('SentryTableSeeder');
+
+        $this->call('VolunteerTableSeeder');
     }
 
 }

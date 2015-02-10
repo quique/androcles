@@ -78,9 +78,11 @@
                     </li>
                     <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
                     <li><a href="{{ action('LinksController@index') }}">{{ Lang::get("layout.Links") }}</a></li>
+                    <li><a href="{{ action('VolunteersController@index') }}">{{ Lang::get("layout.Volunteers") }}</a></li>
                     @if (Sentry::check())
                         <li><a href="#">{{ trans("layout.user") }}</a>
                             <ul class="dropdown-menu">
+                                <li><a href="{{ URL::route('volunteers.edit', Sentry::getUser()->id) }}">{{ trans("layout.volunteer-edition") }}</a></li>
                                 <li><a href="{{ URL::route('users.password', Sentry::getUser()->id) }}">{{ trans("layout.passwd") }}</a></li>
                                 <li><a href="{{ URL::route('logout') }}">{{ Lang::get("layout.logout") }}</a></li>
                                 @if (Sentry::getUser()->inGroup(Sentry::getGroupProvider()->findByName('Admin')))

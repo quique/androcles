@@ -19,7 +19,6 @@ return array(
     'log-in'        => 'Log in',
     'logout'        => 'Log out',
     'Lost-found'    => 'Lost and found',
-    'motto'         => 'A CMS for Animal Shelters',
     'News'          => 'News',
     'Others'        => 'Others',
     'Particular'    => 'Particular',
@@ -28,5 +27,7 @@ return array(
     'Up-for-adoption' => 'Up for adoption',
     'user'          => 'User',
     'user-index'    => 'Users list',
+    'Volunteers'    => 'Volunteers',
+    'volunteer-edition' => 'Edit my volunteer profile',
     'create-user'   => 'Add new user',
 );

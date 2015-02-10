@@ -128,13 +128,14 @@ class UsersController extends BaseController {
         }
 
         try {
-            Sentry::getUserProvider()->create(array(
+            $user = Sentry::getUserProvider()->create(array(
                 'email'       => $input['email'],
                 'password'    => $input['password'],
                 'first_name'  => $input['first_name'],
                 'last_name'   => $input['last_name'],
                 'activated'   => 1,
             ));
+            Volunteer::create(array('id' => $user->id));
         } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
             return Redirect::action('UsersController@create')->withErrors(['email' => 'users.user-exists'])->withInput();
         }
@@ -233,14 +234,14 @@ class UsersController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($user)
     {
-        // TODO: Evitar que el admin se pueda borrar a sí mismo?
-        try {
-            $id->delete;
-        } catch (Exception $e) {
-            //
-        }
+        // TODO: Prevent an admin user can destroy himself?
+
+        $volunteer = Volunteer::find($user->id);
+        App::make('VolunteersController')->destroy($volunteer);
+
+        $user->delete();
         return Redirect::route('users.index');
     }
 
