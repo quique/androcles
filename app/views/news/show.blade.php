@@ -59,7 +59,7 @@
 
             @if (Sentry::check())
                 <div style="margin-bottom: 20px;">
-                    @if (Sentry::getUser()->hasAccess('news.remove'))
+                    @if (Sentry::getUser()->hasAccess('news.delete'))
                         <a href="{{ action('NewsController@delete', $news->id) }}" class="btn btn-danger">{{ trans('news.remove') }}</a>
                     @endif
                     @if (Sentry::getUser()->hasAccess('news.edit'))

@@ -20,7 +20,7 @@ class AnimalsController extends BaseController
     }
 
 
-    public function saveCreate()
+    public function store()
     {
         $input = Input::all();
         $rules = [
@@ -83,11 +83,11 @@ class AnimalsController extends BaseController
             $pic->save();
         }
 
-        return Redirect::action('AnimalsController@readSingle', ['id' => $animal->id]);
+        return Redirect::action('AnimalsController@show', ['id' => $animal->id]);
     }
 
 
-    public function read()
+    public function index()
     {
         $animals = Animal::all();
         foreach ($animals as $animal) {
@@ -96,7 +96,7 @@ class AnimalsController extends BaseController
                 $animal['pic'] = "nopic.jpg";
         }
 
-        return View::make('animals.read', [
+        return View::make('animals.index', [
             'animals' => $animals,
             'title'   => "animals.all"]);
         // return View::make('animals.read', compact('animals'));
@@ -131,16 +131,16 @@ class AnimalsController extends BaseController
                 $animal['pic'] = "nopic.jpg";
         }
 
-        return View::make('animals.read', [
+        return View::make('animals.index', [
             'animals' => $animals,
             'title'   => $title]);
     }
 
 
-    public function readSingle(Animal $animal)
+    public function show(Animal $animal)
     {
         $pics = $animal->animal_pics()->get();
-        return View::make('animals.readsingle', [
+        return View::make('animals.show', [
             'animal' => $animal,
             'pics'   => $pics,
             'title'  => "Información sobre $animal->name"]);
@@ -185,13 +185,13 @@ class AnimalsController extends BaseController
                 $animal['pic'] = "nopic.jpg";
         }
 
-        return View::make('animals.read', [
+        return View::make('animals.index', [
             'animals' => $animals,
             'title' => $title]);
     }
 
 
-    public function update($animal)
+    public function edit($animal)
     {
         $animal_pics = $animal->animal_pics()->get();
 
@@ -201,7 +201,7 @@ class AnimalsController extends BaseController
         $coats = ['' => 'Seleccione el pelaje'] + Coat::lists('description', 'id');
         $statuses = ['' => 'Seleccione el estado'] + Status::lists('name', 'id');
 
-        return View::make('animals.update', [
+        return View::make('animals.edit', [
             'animal'      => $animal,
             'animal_pics' => $animal_pics,
             'title'       => "Editar la información sobre $animal->name",
@@ -213,7 +213,7 @@ class AnimalsController extends BaseController
         ]);
     }
 
-    public function saveUpdate()
+    public function update()
     {
         $input = Input::all();
         $rules = [
@@ -287,7 +287,7 @@ class AnimalsController extends BaseController
             $pic->save();
         }
 
-        return Redirect::action('AnimalsController@readSingle', ['id' => $animal->id]);
+        return Redirect::action('AnimalsController@show', ['id' => $animal->id]);
     }
 
 
@@ -300,7 +300,7 @@ class AnimalsController extends BaseController
     }
 
 
-    public function doDelete()
+    public function destroy()
     {
         $animal = Animal::findOrFail(Input::get('id'));
 
@@ -314,7 +314,7 @@ class AnimalsController extends BaseController
         }
 
         $animal->delete();
-        return Redirect::action('AnimalsController@read');
+        return Redirect::action('AnimalsController@index');
     }
 
 

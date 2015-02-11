@@ -6,7 +6,7 @@
         <h2>{{ trans($title) }}</h2>
     </div>
 
-    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
+    <form action="{{ action('AnimalsController@store') }}" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
         {{ Form::token() }} <!-- Protection against cross-site request forgery attacks -->
 
         <div class="form-group">

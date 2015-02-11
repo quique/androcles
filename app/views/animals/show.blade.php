@@ -121,11 +121,11 @@
 
     @if (Sentry::check())
         <div style="margin-bottom: 20px;">
-            @if (Sentry::getUser()->hasAccess('animals.remove'))
+            @if (Sentry::getUser()->hasAccess('animals.delete'))
                 <a href="{{ action('AnimalsController@delete', $animal->id) }}" class="btn btn-danger">{{ trans('animals.remove') }}</a>
             @endif
             @if (Sentry::getUser()->hasAccess('animals.edit'))
-                <a href="{{ action('AnimalsController@update', $animal->id) }}" class="btn btn-warning">{{ trans('animals.edit') }}</a>
+                <a href="{{ action('AnimalsController@edit', $animal->id) }}" class="btn btn-warning">{{ trans('animals.edit') }}</a>
             @endif
         </div>
     @endif

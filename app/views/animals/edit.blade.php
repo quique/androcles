@@ -6,7 +6,7 @@
         <h1>{{{ $title }}}</h1>
     </div>
 
-    {{ Form::open(['url'=> '#', 'class'=>'form-horizontal', 'files' => true]) }}
+    {{ Form::open(['url'=> URL::route('animals.update', $animal->id), 'class'=>'form-horizontal', 'files' => true]) }}
         {{ Form::hidden('id', $animal->id) }}
 
         <div class="form-group">
