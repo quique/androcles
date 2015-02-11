@@ -12,7 +12,7 @@
     <div class="container">
         <p>{{{ trans('news.sure', ['title' => $news->title]) }}}</p>
 
-        <form action="{{ action('NewsController@handleDelete') }}" method="post" role="form">
+        <form action="{{ action('NewsController@destroy', $news->id) }}" method="post" role="form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="news" value="{{ $news->id }}" />
             <input type="submit" class="btn btn-danger" value="{{ trans('news.remove') }}" />

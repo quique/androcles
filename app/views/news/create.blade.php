@@ -10,7 +10,7 @@
     </section>
 
     <div class="container">
-    <form action="{{ action('NewsController@handleCreate') }}" enctype="multipart/form-data" method="post" role="form">
+    <form action="{{ action('NewsController@store') }}" enctype="multipart/form-data" method="post" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group">

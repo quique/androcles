@@ -10,7 +10,7 @@
     </section>
 
     <div class="container">
-    <form action="{{ action('NewsController@handleEdit') }}" enctype="multipart/form-data" method="post" role="form">
+    <form action="{{ action('NewsController@update', $news->id) }}" enctype="multipart/form-data" method="post" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="id" value="{{ $news->id }}">
 

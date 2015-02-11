@@ -46,7 +46,7 @@ class NewsController extends BaseController
     /**
      * Handle create form submission.
      */
-    public function handleCreate()
+    public function store()
     {
         $rules = [
             'title' => 'required',
@@ -103,7 +103,7 @@ class NewsController extends BaseController
     /**
      * Handle edit form submission.
      */
-    public function handleEdit()
+    public function update()
     {
         $rules = [
             'title' => 'required',
@@ -170,7 +170,7 @@ class NewsController extends BaseController
     /**
      * Handle the delete confirmation.
      */
-    public function handleDelete()
+    public function destroy()
     {
         $id = Input::get('news');
         $news = News::findOrFail($id);
