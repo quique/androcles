@@ -18,7 +18,7 @@ class CreateVolunteers extends Migration {
         Schema::create('volunteers', function(Blueprint $table)
         {
             $table->integer('id')->unsigned()->unique();
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            #$table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->string('alias');
             $table->string('task');
             $table->text('description');
