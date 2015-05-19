@@ -12,6 +12,7 @@ class CoatTableSeeder extends Seeder {
         Coat::create(array('id' => 4, 'description' => 'Mechones'));
         Coat::create(array('id' => 5, 'description' => 'Sin pelo'));
         Coat::create(array('id' => 6, 'description' => 'Corto'));
+        Coat::create(array('id' => 7, 'description' => 'Desconocido'));
     }
 
 }
