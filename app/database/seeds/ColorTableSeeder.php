@@ -65,6 +65,7 @@ class ColorTableSeeder extends Seeder {
         Color::create(array('id' => 57, 'name' => 'Plata'));
         Color::create(array('id' => 58, 'name' => 'Rojizo'));
         Color::create(array('id' => 59, 'name' => 'Tortuga rojiza'));
+        Color::create(array('id' => 60, 'name' => 'Desconocido'));
     }
 
 }
