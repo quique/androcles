@@ -27,10 +27,11 @@ class HomeController extends BaseController {
     {
         // News
         $news = News::orderBy('created_at', 'DESC')->take(3)->get();
-        foreach ($news as $item)
+        foreach ($news as $item) {
             $item['pic'] = $item->pics()->orderBy(DB::raw('RAND()'))->first()['filename'];
             if (!$item['pic'])
                 $item['pic'] = "nopic.jpg";
+        }
 
         // Latest arrivals
         $arrivals = Animal::where('status_id', '<=', 10)->orderBy('id', 'DESC')->take(3)->get();
