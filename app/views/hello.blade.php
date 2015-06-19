@@ -10,6 +10,8 @@
     </section>
 
     <div class="container" style="text-align: right;">
+        <a target="_blank" title="Síguenos en Facebook" href="https://www.facebook.com/pages/SPA-Amigo-Mio-de-Teruel/430114683706346"><img alt="Síguenos en Facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook40x40.png" width="25" height="25" style="margin-top: -20px;"></a>&nbsp; &nbsp;
+
         <a href="https://twitter.com/AmigoMioProte" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false">Seguir a @AmigoMioProte</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
