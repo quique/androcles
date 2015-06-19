@@ -4,7 +4,7 @@
     <section class="header section-padding">
         <div class="container">
             <div class="page-header">
-                <h1>{{ $shelter }} <small>{{ $motto }}</small></h1>
+                <img src="{{ asset('/images/logo_header.jpg') }}" style="max-width: 100%; height: auto; width: auto\9;" alt="<h1>{{ $shelter }} <small>{{ $motto }}</small></h1>">
             </div>
         </div>
     </section>
