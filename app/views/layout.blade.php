@@ -79,6 +79,15 @@
                     <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
                     <li><a href="{{ action('LinksController@index') }}">{{ Lang::get("layout.Links") }}</a></li>
                     <li><a href="{{ action('VolunteersController@index') }}">{{ Lang::get("layout.Volunteers") }}</a></li>
+
+                    <li><a href="#">Información</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/info/about">Quiénes somos</a></li>
+                            <li><a href="/info/a-day">Un día en la prote</a></li>
+                            <li><a href="/info/get-involved">Cómo ayudar</a></li>
+                            <li><a href="/info/contact">Contacto</a></li>
+                        </ul>
+                    </li>
                     @if (Sentry::check())
                         <li><a href="#">{{ trans("layout.user") }}</a>
                             <ul class="dropdown-menu">

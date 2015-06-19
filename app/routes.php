@@ -113,3 +113,13 @@ Route::group(array('prefix' => 'volunteers'), function()
     Route::post('/{volunteer}/update',  ['as'=>'volunteers.update',  'uses'=>'VolunteersController@update']);
 //  Route::post('/{volunteer}/destroy', ['as'=>'volunteers.destroy', 'uses'=>'VolunteersController@destroy']);
 });
+
+
+
+Route::group(array('prefix' => 'info'), function()
+{
+    Route::get('/about', function() { return Response::view('info/about', ['title' => 'Quiénes somos']); });
+    Route::get('/a-day', function() { return Response::view('info/aday',  ['title' => 'Un día en la protectora']); });
+    Route::get('/get-involved', function() { return Response::view('info/get-involved',  ['title' => 'Cómo ayudar']); });
+    Route::get('/contact', function() { return Response::view('info/contact',  ['title' => 'Contacto']); });
+});
