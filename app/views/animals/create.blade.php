@@ -10,7 +10,7 @@
         {{ Form::token() }} <!-- Protection against cross-site request forgery attacks -->
 
         <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">{{ trans('animals.name') }}:</label>
+            <label for="name" class="col-sm-2 control-label">{{ trans('animals.name') }}<span style="color: red;">*</span>:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" name="name" id="name" placeholder="{{ trans('animals.name-animal') }}" value="{{{ Input::old('name') }}}">
             </div>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            <label for="species_id" class="col-sm-2 control-label">{{ trans('animals.species') }}:</label>
+            <label for="species_id" class="col-sm-2 control-label">{{ trans('animals.species') }}<span style="color: red;">*</span>:</label>
             <div class="col-sm-2">
                 {{ Form::select('species_id', $species, Input::old('species_id'), ['class'=>'form-control', 'id'=>'species_id']) }}
             </div>
@@ -104,7 +104,7 @@
         </div>
 
         <div class="form-group">
-            <label for="color_id" class="col-sm-2 control-label">{{ trans('animals.color') }}:</label>
+            <label for="color_id" class="col-sm-2 control-label">{{ trans('animals.color') }}<span style="color: red;">*</span>:</label>
             <div class="col-sm-2">
                 {{ Form::select('color_id', $colors, Input::old('color_id'), ['class'=>'form-control', 'id'=>'color_id']) }}
             </div>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="form-group">
-            <label for="coat_id" class="col-sm-2 control-label">{{ trans('animals.coat') }}:</label>
+            <label for="coat_id" class="col-sm-2 control-label">{{ trans('animals.coat') }}<span style="color: red;">*</span>:</label>
             <div class="col-sm-2">
                 {{ Form::select('coat_id', $coats, Input::old('coat_id'), ['class'=>'form-control', 'id'=>'coat_id']) }}
             </div>
@@ -124,7 +124,7 @@
         </div>
 
         <div class="form-group">
-            <label for="status_id" class="col-sm-2 control-label">{{ trans('animals.status') }}:</label>
+            <label for="status_id" class="col-sm-2 control-label">{{ trans('animals.status') }}<span style="color: red;">*</span>:</label>
             <div class="col-sm-2">
                 {{ Form::select('status_id', $statuses, Input::old('status_id'), ['class'=>'form-control', 'id'=>'status_id']) }}
             </div>
