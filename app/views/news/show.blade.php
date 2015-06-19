@@ -52,6 +52,9 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
             <div class="fb-like" data-href="{{ URL::current() }}" data-send="true" data-width="450" data-show-faces="true"></div><br />
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="AmigoMioProte" data-size="large">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <br />
 
             <p style="margin-top: 20px; margin-bottom: 15px;">
                 {{ str_replace(["\r\n", "\n", "\r"], '<br />', htmlspecialchars($news->body, ENT_QUOTES, 'UTF-8')) }}
