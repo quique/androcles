@@ -94,7 +94,7 @@ class LinksController extends \BaseController {
     {
         $s = $link->update(Input::all());
 
-        if($s->isSaved()) {
+        if ($s->isSaved()) {
             Session::flash('success', 'links.updated');
             return Redirect::route('links.index'); // route('links.show', $id)->with('flash', 'The link was updated');
         }
