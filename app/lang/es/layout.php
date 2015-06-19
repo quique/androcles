@@ -19,6 +19,7 @@ return array(
     'log-in'        => 'Iniciar sesión',
     'logout'        => 'Cerrar sesión',
     'Lost-found'    => 'Perdidos y encontrados',
+    'More-animals'  => 'Más animales',
     'News'          => 'Noticias',
     'Others'        => 'Otros',
     'Particular'    => 'De particulares',

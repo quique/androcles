@@ -19,6 +19,7 @@ return array(
     'log-in'        => 'Log in',
     'logout'        => 'Log out',
     'Lost-found'    => 'Lost and found',
+    'More-animals'  => 'More animals',
     'News'          => 'News',
     'Others'        => 'Others',
     'Particular'    => 'Particular',

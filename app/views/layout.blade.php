@@ -51,17 +51,34 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">{{ Lang::get("layout.Animals") }}</a>
+                    <li><a href="#">Información</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">{{ Lang::get("layout.Up-for-adoption") }}</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'dogs']) }}">{{ Lang::get("layout.Dogs") }}</a></li>
-                                    <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'cats']) }}">{{ Lang::get("layout.Cats") }}</a></li>
-                                    <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'others']) }}">{{ Lang::get("layout.Others") }}</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{ URL::route('animals.status', ['lost']) }}">{{ Lang::get("layout.Lost-found") }}</a></li>
+                            <li><a href="/info/about">Quiénes somos</a></li>
+                            <li><a href="/info/get-involved">Cómo ayudar</a></li>
+                            <li><a href="/info/a-day">Un día en la prote</a></li>
+                            <li><a href="{{ action('VolunteersController@index') }}">{{ Lang::get("layout.Volunteers") }}</a></li>
+                            <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
+                            <li><a href="{{ action('LinksController@index') }}">{{ Lang::get("layout.Links") }}</a></li>
+                            <li><a href="/info/contact">Contacto</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#">{{ Lang::get("layout.Up-for-adoption") }}</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'dogs']) }}">{{ Lang::get("layout.Dogs") }}</a></li>
+                            <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'cats']) }}">{{ Lang::get("layout.Cats") }}</a></li>
+                            <li><a href="{{ URL::route('animals.status.species', ['up-for-adoption', 'others']) }}">{{ Lang::get("layout.Others") }}</a></li>
                             <li><a href="{{ URL::route('animals.status', ['particular']) }}">{{ Lang::get("layout.Particular") }}</a></li>
+                            @if (Sentry::check() and Sentry::getUser()->hasAccess('animals.create'))
+                                <li class="divider"></li>
+                                <li><a href="{{ action('AnimalsController@create') }}">{{ Lang::get("layout.Add-animal") }}</a></li>
+                            @endif
+                        </ul>
+                    </li>
+
+                    <li><a href="#">{{ Lang::get("layout.More-animals") }}</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ URL::route('animals.status', ['lost']) }}">{{ Lang::get("layout.Lost-found") }}</a></li>
                             <li><a href="{{ URL::route('animals.status', ['happy-endings']) }}">{{ Lang::get("layout.Happy-endings") }}</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ URL::route('animals.status.species', ['happy-endings', 'dogs']) }}">{{ Lang::get("layout.Dogs") }}</a></li>
@@ -76,18 +93,11 @@
                             @endif
                         </ul>
                     </li>
-                    <li><a href="{{ action('NewsController@index') }}">{{ Lang::get("layout.News") }}</a></li>
-                    <li><a href="{{ action('LinksController@index') }}">{{ Lang::get("layout.Links") }}</a></li>
-                    <li><a href="{{ action('VolunteersController@index') }}">{{ Lang::get("layout.Volunteers") }}</a></li>
 
-                    <li><a href="#">Información</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/info/about">Quiénes somos</a></li>
-                            <li><a href="/info/a-day">Un día en la prote</a></li>
-                            <li><a href="/info/get-involved">Cómo ayudar</a></li>
-                            <li><a href="/info/contact">Contacto</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/info/get-involved">Cómo ayudar</a></li>
+                    <li><a href="/info/contact">Contacto</a></li>
+
+
                     @if (Sentry::check())
                         <li><a href="#">{{ trans("layout.user") }}</a>
                             <ul class="dropdown-menu">
