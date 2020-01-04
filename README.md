@@ -7,10 +7,11 @@ A CMS for animal shelters
 Requirements
 ------------
 
-Androcles requires a server with PHP 5.4+ that has the MCrypt extension installed.
+Androcles requires a server with PHP 5.4+ that has the MCrypt extension installed, as well as php-curl, php-json, php-gd.
 
 The database engine that is used to store data for this application could be any of the engines supported by Laravel: MySQL, Postgres, SQLite and SQL Server.
 
+If using Apache, `mod_rewrite` should be enabled.
 
 Configuration
 -------------
