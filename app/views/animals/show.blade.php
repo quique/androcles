@@ -106,7 +106,12 @@
                 <td>{{ $animal->neutered ? 'Sí' : 'No' }}</td></tr>
 
             <tr><td><strong>Fecha de nacimiento:</strong></td>
-                <td>{{ strftime('%d-%m-%Y', strtotime($animal->dateofbirth)) }}</td></tr>
+                @if ($animal->dateofbirth != '0000-00-00')
+                <td>{{ strftime('%d-%m-%Y', strtotime($animal->dateofbirth)) }}</td>
+                @else
+                <td></td>
+                @endif
+                </tr>
 
             <tr><td><strong>Fecha de ingreso:</strong></td>
                 <td>{{ strftime('%d-%m-%Y', strtotime($animal->dateofarrival)) }}</td></tr>
