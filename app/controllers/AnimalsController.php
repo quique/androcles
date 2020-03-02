@@ -161,7 +161,7 @@ class AnimalsController extends BaseController
         }
 
         if ($status == "up-for-adoption") {
-            $animals = $animals->where('status_id', '<=', 10)->get();
+            $animals = $animals->where('status_id', '<=', 10)->orderBy('status_id', 'ASC')->orderBy('dateofarrival')->get();
             $title = "$species_name en adopción";
         } elseif ($status == 'lost') {
             $animals = $animals->whereIn('status_id', [13, 25, 30])->get();
@@ -277,7 +277,7 @@ class AnimalsController extends BaseController
                 $movedfile = Input::file('photo')->move($images_dir, $filename);
                 $this->resizeImage($images_dir . $filename, $thumbnails_dir . $filename, 320, 240);
                 $this->resizeImage($images_dir . $filename, $images_dir . $filename, 960, 720);
-            } catch(Exception $e) {
+            } catch(Error $e) {
                 die($e->getMessage());
             }
 
