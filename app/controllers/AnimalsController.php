@@ -43,9 +43,9 @@ class AnimalsController extends BaseController
         $animal->weight          = $input['weight'];
         $animal->sex_id          = $input['sex_id'];
         $animal->neutered        = $input['neutered'];
-        $animal->dateofbirth     = $input['dateofbirth'];
-        $animal->dateofarrival   = $input['dateofarrival'];
-        $animal->dateofexit      = $input['dateofexit'];
+        $animal->dateofbirth     = $input['dateofbirth'] ?: null;
+        $animal->dateofarrival   = $input['dateofarrival'] ?: null;
+        $animal->dateofexit      = $input['dateofexit'] ?: null;
         $animal->color_id        = $input['color_id'];
         $animal->coat_id         = $input['coat_id'];
         $animal->status_id       = $input['status_id'];
@@ -236,9 +236,9 @@ class AnimalsController extends BaseController
         $animal->weight          = $input['weight'];
         $animal->sex_id          = $input['sex_id'];
         $animal->neutered        = $input['neutered'];
-        $animal->dateofbirth     = $input['dateofbirth'];
-        $animal->dateofarrival   = $input['dateofarrival'];
-        $animal->dateofexit      = $input['dateofexit'];
+        $animal->dateofbirth     = $input['dateofbirth'] ?: null;
+        $animal->dateofarrival   = $input['dateofarrival'] ?: null;
+        $animal->dateofexit      = $input['dateofexit'] ?: null;
         $animal->color_id        = $input['color_id'];
         $animal->coat_id         = $input['coat_id'];
         $animal->status_id       = $input['status_id'];
