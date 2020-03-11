@@ -125,7 +125,7 @@ class NewsController extends BaseController
 
         /* Delete the selected pictures */
         $picstodelete = Input::get('picstodelete');
-        if (count($picstodelete) > 0) {
+        if ($picstodelete !== null && count($picstodelete) > 0) {
             foreach($picstodelete as $picId) {
                 $pic = NewsPic::findOrFail($picId);
                 unlink($images_dir . $pic->filename); // "Delete" the file.
