@@ -138,7 +138,7 @@
 
 <footer>
     <div class="container" style="text-align: center;">
-        <img src="{{ asset('/images/2023-1024.jpg') }}" alt="Subvencionado por el Ministerio de Derechos Sociales y Agenda 2030" width="512" height="auto">
+        <img src="{{ asset('/images/2024-1024.jpg') }}" alt="Subvencionado por el Ministerio de Derechos Sociales y Agenda 2030" width="512" height="auto">
     </div>
 </footer>
 
