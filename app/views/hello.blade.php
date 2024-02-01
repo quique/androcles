@@ -23,32 +23,6 @@
     </div>
 
     <div class="container">
-        @if (!$news->isEmpty())
-            <div class="page-header">
-                <h2>{{ trans('home.news') }}</h2>
-            </div>
-
-            @foreach($news as $piece)
-                @if (!$piece->pic)
-                    <!-- {{ $piece->pic = 'nopic.jpg' }} -->
-                @endif
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <a href="{{ action('NewsController@show', $piece->id) }}">
-                            <img src="{{ asset("/images/newsthumbs/".$piece->pic) }}"
-                            alt="{{ trans('home.image') }}"></a>
-                        <div class="caption">
-                            <h3><a href="{{ action('NewsController@show', $piece->id) }}">{{{ $piece->title }}}</a></h3>
-                            <p>{{{ $piece->body }}}</p>
-                        </div>
-                    </div>
-                    <p class="thumbfooter"><a href="{{ action('NewsController@show', $piece->id) }}">{{ trans('home.more') }}</a></p>
-                </div>
-            @endforeach
-        @endif
-        <br style="clear: both;">
-
-
         @if (!$arrivals->isEmpty())
             <div class="page-header">
                 <h2>{{ trans('home.arrivals') }}</h2>
@@ -73,6 +47,32 @@
                         </div>
                     </div>
                     <p class="thumbfooter"><a href="{{ action('AnimalsController@show', $animal->id) }}">{{ trans('home.more') }}</a></p>
+                </div>
+            @endforeach
+        @endif
+        <br style="clear: both;">
+
+
+        @if (!$news->isEmpty())
+            <div class="page-header">
+                <h2>{{ trans('home.news') }}</h2>
+            </div>
+
+            @foreach($news as $piece)
+                @if (!$piece->pic)
+                    <!-- {{ $piece->pic = 'nopic.jpg' }} -->
+                @endif
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <a href="{{ action('NewsController@show', $piece->id) }}">
+                            <img src="{{ asset("/images/newsthumbs/".$piece->pic) }}"
+                            alt="{{ trans('home.image') }}"></a>
+                        <div class="caption">
+                            <h3><a href="{{ action('NewsController@show', $piece->id) }}">{{{ $piece->title }}}</a></h3>
+                            <p>{{{ $piece->body }}}</p>
+                        </div>
+                    </div>
+                    <p class="thumbfooter"><a href="{{ action('NewsController@show', $piece->id) }}">{{ trans('home.more') }}</a></p>
                 </div>
             @endforeach
         @endif
