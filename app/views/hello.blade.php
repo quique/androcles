@@ -4,16 +4,22 @@
     <section class="header section-padding">
         <div class="container">
             <div class="page-header">
-                <img src="{{ asset('/images/logo_header.jpg') }}" style="max-width: 100%; height: auto; width: auto\9;" alt="<h1>{{ $shelter }} <small>{{ $motto }}</small></h1>">
+                <img src="{{ asset('/images/logo_header.jpg') }}"
+                    style="max-width: 100%; height: auto; width: auto\9;"
+                    alt="<h1>{{ $shelter }} <small>{{ $motto }}</small></h1>"
+                >
             </div>
         </div>
     </section>
 
     <div class="container" style="text-align: right;">
-        <a target="_blank" title="Síguenos en Facebook" href="https://www.facebook.com/pages/SPA-Amigo-Mio-de-Teruel/430114683706346"><img alt="Síguenos en Facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook40x40.png" width="25" height="25" style="margin-top: -20px;"></a>&nbsp; &nbsp;
+        <a target="_blank" title="Síguenos en Facebook" href="https://www.facebook.com/pages/SPA-Amigo-Mio-de-Teruel/430114683706346">
+            <img alt="Síguenos en Facebook" src="{{ asset('/images/facebook_by_amit_jain.png') }}" width="24" height="24" style="margin-top: -20px;">
+        </a>&nbsp; &nbsp;
 
-        <a href="https://twitter.com/AmigoMioProte" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false">Seguir a @AmigoMioProte</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <a target="_blank" title="Síguenos en X (Twitter)" href="https://twitter.com/AmigoMioProte">
+            <img alt="Síguenos en X (Twitter)" src="{{ asset('/images/facebook_by_amit_jain.png') }}" width="24" height="24" style="margin-top: -20px;">
+        </a>
     </div>
 
     <div class="container">
