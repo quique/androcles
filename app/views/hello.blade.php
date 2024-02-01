@@ -14,11 +14,11 @@
 
     <div class="container" style="text-align: right;">
         <a target="_blank" title="Síguenos en Facebook" href="https://www.facebook.com/pages/SPA-Amigo-Mio-de-Teruel/430114683706346">
-            <img alt="Síguenos en Facebook" src="{{ asset('/images/facebook_by_amit_jain.png') }}" width="24" height="24" style="margin-top: -20px;">
+            <img alt="Síguenos en Facebook" src="{{ asset('/images/facebook_by_amit_jain.png') }}" width="48" height="48" style="margin-top: -20px;">
         </a>&nbsp; &nbsp;
 
         <a target="_blank" title="Síguenos en X (Twitter)" href="https://twitter.com/AmigoMioProte">
-            <img alt="Síguenos en X (Twitter)" src="{{ asset('/images/facebook_by_amit_jain.png') }}" width="24" height="24" style="margin-top: -20px;">
+            <img alt="Síguenos en X (Twitter)" src="{{ asset('/images/twitter_by_tulpahn.png') }}" width="48" height="48" style="margin-top: -20px;">
         </a>
     </div>
 
